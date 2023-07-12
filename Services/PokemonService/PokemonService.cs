@@ -11,19 +11,23 @@ namespace WhosThatPokemon.Services.PokemonService
             _db = db;
         }
 
-        public List<Pokemon> GetAllPokemons()
+        public ServiceResponse<List<Pokemon>> GetAllPokemons()
         {
-            return _db.Pokemons.ToList();
+            var serviceResponse = new ServiceResponse<List<Pokemon>>();
+            serviceResponse.Data = _db.Pokemons.ToList();
+            return serviceResponse;
         }
 
-        public Pokemon GetPokemonById(int id)
+        public ServiceResponse<Pokemon> GetPokemonById(int id)
         {
+            var serviceResponse = new ServiceResponse<Pokemon>();
             var pokemon = _db.Pokemons.Find(id);
             if (pokemon == null)
             {
                 throw new Exception("Pokemon not found");
             }
-            return pokemon;
+            serviceResponse.Data = pokemon;
+            return serviceResponse;
         }
     }
 }

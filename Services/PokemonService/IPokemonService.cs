@@ -2,7 +2,7 @@
 {
     public interface IPokemonService
     {
-        List<Pokemon> GetAllPokemons();
-        Pokemon GetPokemonById(int id);
+        ServiceResponse<List<Pokemon>> GetAllPokemons();
+        ServiceResponse<Pokemon> GetPokemonById(int id);
     }
 }

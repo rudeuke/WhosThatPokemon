@@ -14,13 +14,13 @@ namespace WhosThatPokemon.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Pokemon> Get()
+        public ActionResult<ServiceResponse<List<Pokemon>>> Get()
         {
             return Ok(_pokemonService.GetAllPokemons());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Pokemon> GetSingle(int id)
+        public ActionResult<ServiceResponse<Pokemon>> GetSingle(int id)
         {
             return Ok(_pokemonService.GetPokemonById(id));
         }
