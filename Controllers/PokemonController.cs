@@ -24,5 +24,11 @@ namespace WhosThatPokemon.Controllers
         {
             return Ok(await _pokemonService.GetPokemonById(id));
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<Pokemon>>>> AddPokemon(Pokemon newPokemon)
+        {
+            return Ok(await _pokemonService.AddPokemon(newPokemon));
+        }
     }
 }

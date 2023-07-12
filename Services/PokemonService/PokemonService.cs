@@ -12,6 +12,15 @@ namespace WhosThatPokemon.Services.PokemonService
             _db = db;
         }
 
+        public async Task<ServiceResponse<List<Pokemon>>> AddPokemon(Pokemon newPokemon)
+        {
+            var serviceResponse = new ServiceResponse<List<Pokemon>>();
+            _db.Pokemons.Add(newPokemon);
+            await _db.SaveChangesAsync();
+            serviceResponse.Data = await _db.Pokemons.ToListAsync();
+            return serviceResponse;
+        }
+
         public async Task<ServiceResponse<List<Pokemon>>> GetAllPokemons()
         {
             var serviceResponse = new ServiceResponse<List<Pokemon>>();
