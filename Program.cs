@@ -1,3 +1,5 @@
+global using WhosThatPokemon.Services.PokemonService;
+global using WhosThatPokemon.Models;
 using Microsoft.EntityFrameworkCore;
 using WhosThatPokemon.Data;
 
@@ -10,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IPokemonService, PokemonService>();
 
 var app = builder.Build();
 

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WhosThatPokemon.Data;
-using WhosThatPokemon.Models;
 
 namespace WhosThatPokemon.Controllers
 {
@@ -8,22 +6,23 @@ namespace WhosThatPokemon.Controllers
     [Route("[controller]")]
     public class PokemonController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IPokemonService _pokemonService;
 
-        public PokemonController(ApplicationDbContext db)
+        public PokemonController(IPokemonService pokemonService)
         {
-            _db = db;
+            _pokemonService = pokemonService;
         }
 
         [HttpGet]
-        public ActionResult<Pokemon> GetPokemonById(int id)
+        public ActionResult<Pokemon> Get()
         {
-            var pokemon = _db.Pokemons.Find(id);
-            if (pokemon == null)
-            {
-                return NotFound();
-            }
-            return Ok(pokemon);
+            return Ok(_pokemonService.GetAllPokemons());
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Pokemon> GetSingle(int id)
+        {
+            return Ok(_pokemonService.GetPokemonById(id));
         }
     }
 }
