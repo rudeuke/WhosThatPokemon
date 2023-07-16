@@ -14,13 +14,13 @@ namespace WhosThatPokemon.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Pokemon>>>> Get()
+        public async Task<ActionResult<ServiceResponse<List<GetPokemonDto>>>> Get()
         {
             return Ok(await _pokemonService.GetAllPokemons());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<Pokemon>>> GetSingle(int id)
+        public async Task<ActionResult<ServiceResponse<GetPokemonDto>>> GetSingle(int id)
         {
             return Ok(await _pokemonService.GetPokemonById(id));
         }

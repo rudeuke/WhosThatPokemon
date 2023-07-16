@@ -6,10 +6,12 @@ namespace WhosThatPokemon.Services.PokemonService
     public class PokemonService : IPokemonService
     {
         private readonly ApplicationDbContext _db;
+        private readonly IMapper _mapper;
 
-        public PokemonService(ApplicationDbContext db)
+        public PokemonService(ApplicationDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<List<Pokemon>>> AddPokemon(Pokemon newPokemon)
@@ -21,23 +23,23 @@ namespace WhosThatPokemon.Services.PokemonService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Pokemon>>> GetAllPokemons()
+        public async Task<ServiceResponse<List<GetPokemonDto>>> GetAllPokemons()
         {
-            var serviceResponse = new ServiceResponse<List<Pokemon>>();
-            serviceResponse.Data = await _db.Pokemons.ToListAsync();
+            var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
+            serviceResponse.Data = await _db.Pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToListAsync();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<Pokemon>> GetPokemonById(int id)
+        public async Task<ServiceResponse<GetPokemonDto>> GetPokemonById(int id)
         {
-            var serviceResponse = new ServiceResponse<Pokemon>();
+            var serviceResponse = new ServiceResponse<GetPokemonDto>();
             var pokemon = await _db.Pokemons.FindAsync(id);
             if (pokemon == null)
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Pokemon not found.";
             }
-            serviceResponse.Data = pokemon;
+            serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
             return serviceResponse;
         }
     }

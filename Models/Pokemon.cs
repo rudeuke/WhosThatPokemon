@@ -12,6 +12,6 @@ namespace WhosThatPokemon.Models
         public string? ImageUrl { get; set; }
         public string? SilhouetteUrl { get; set; }
 
-        public List<Type> PokemonTypes { get; set; } = new();
+        public virtual List<Type> PokemonTypes { get; set; } = new();
     }
 }

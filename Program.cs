@@ -1,5 +1,8 @@
 global using WhosThatPokemon.Services.PokemonService;
 global using WhosThatPokemon.Models;
+global using WhosThatPokemon.Dtos.Pokemon;
+global using WhosThatPokemon.Dtos.Type;
+global using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WhosThatPokemon.Data;
 

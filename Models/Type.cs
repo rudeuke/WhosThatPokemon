@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WhosThatPokemon.Models
 {
@@ -10,15 +9,15 @@ namespace WhosThatPokemon.Models
         [Required]
         public TypeEnum PokeType { get; set; }
 
-        public List<Type> ResistantTo { get; set; } = new();
-        public List<Type> ResistedBy { get; set; } = new();
+        public virtual List<Type> ResistantTo { get; set; } = new();
+        public virtual List<Type> ResistedBy { get; set; } = new();
 
-        public List<Type> VulnerableTo { get; set; } = new();
-        public List<Type> EffectiveAgainst { get; set; } = new();
+        public virtual List<Type> VulnerableTo { get; set; } = new();
+        public virtual List<Type> EffectiveAgainst { get; set; } = new();
 
-        public List<Type> UnaffectedBy { get; set; } = new();
-        public List<Type> IneffectiveTo { get; set; } = new();
+        public virtual List<Type> UnaffectedBy { get; set; } = new();
+        public virtual List<Type> IneffectiveTo { get; set; } = new();
 
-        public List<Pokemon> Pokemons { get; set; } = new();
+        public virtual List<Pokemon> Pokemons { get; set; } = new();
     }
 }
