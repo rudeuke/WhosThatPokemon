@@ -26,7 +26,8 @@ namespace WhosThatPokemon.Services.PokemonService
         public async Task<ServiceResponse<List<GetPokemonDto>>> GetAllPokemons()
         {
             var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
-            serviceResponse.Data = await _db.Pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToListAsync();
+            var pokemons = await _db.Pokemons.ToListAsync();
+            serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
             return serviceResponse;
         }
 
