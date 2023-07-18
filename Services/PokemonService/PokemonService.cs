@@ -14,12 +14,14 @@ namespace WhosThatPokemon.Services.PokemonService
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<List<Pokemon>>> AddPokemon(Pokemon newPokemon)
+        public async Task<ServiceResponse<List<GetPokemonDto>>> AddPokemon(AddPokemonDto newPokemonDto)
         {
-            var serviceResponse = new ServiceResponse<List<Pokemon>>();
+            var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
+            var newPokemon = _mapper.Map<Pokemon>(newPokemonDto);
             _db.Pokemons.Add(newPokemon);
             await _db.SaveChangesAsync();
-            serviceResponse.Data = await _db.Pokemons.ToListAsync();
+            var pokemons = await _db.Pokemons.ToListAsync();
+            serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
             return serviceResponse;
         }
 
@@ -31,16 +33,17 @@ namespace WhosThatPokemon.Services.PokemonService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetPokemonDto>> GetPokemonById(int id)
+        public async Task<ServiceResponse<GetPokemonDetailsDto>> GetPokemonById(int id)
         {
-            var serviceResponse = new ServiceResponse<GetPokemonDto>();
+            var serviceResponse = new ServiceResponse<GetPokemonDetailsDto>();
             var pokemon = await _db.Pokemons.FindAsync(id);
             if (pokemon == null)
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Pokemon not found.";
+                return serviceResponse;
             }
-            serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
+            serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
             return serviceResponse;
         }
     }

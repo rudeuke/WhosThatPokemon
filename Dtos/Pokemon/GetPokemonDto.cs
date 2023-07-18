@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public int? OriginalId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public virtual List<GetTypeDto> PokemonTypes { get; set; } = new();
+        public virtual List<string> PokemonTypes { get; set; } = new();
     }
 }

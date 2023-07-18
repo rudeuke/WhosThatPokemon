@@ -6,6 +6,7 @@ global using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WhosThatPokemon.Data;
 using System.Text.Json.Serialization;
+using WhosThatPokemon;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             builder.Configuration.GetConnectionString("DefaultConnection"));
     });
 builder.Services.AddScoped<IPokemonService, PokemonService>();
+builder.Services.AddScoped(provider => new MapperConfiguration(cfg =>
+    {
+        cfg.AddProfile(new AutoMapperProfile(provider.GetService<ApplicationDbContext>()));
+    }).CreateMapper());
 
 var app = builder.Build();
 
