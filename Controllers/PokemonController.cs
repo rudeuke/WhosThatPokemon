@@ -4,7 +4,7 @@ namespace WhosThatPokemon.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PokemonController : Controller
+    public class PokemonController : MyControllerBase
     {
         private readonly IPokemonService _pokemonService;
 
@@ -22,13 +22,12 @@ namespace WhosThatPokemon.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetPokemonDetailsDto>>> GetSingle(int id)
         {
-            return Ok(await _pokemonService.GetPokemonById(id));
+            return ReturnOkOrNotFound(await _pokemonService.GetPokemonById(id));
         }
 
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<GetPokemonDto>>>> AddPokemon(AddPokemonDto newPokemonDto)
         {
-            //return ReturnOkOrNotFound(await _pokemonService.AddPokemon(newPokemon));
             return Ok(await _pokemonService.AddPokemon(newPokemonDto));
         }
     }
