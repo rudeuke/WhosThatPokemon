@@ -17,15 +17,17 @@ namespace WhosThatPokemon.Controllers
         [HttpGet("DeletePokemons")]
         public IActionResult DeletePokemons()
         {
-            DatabaseSeeder.DeleteAllPokemons(_db);
-            return Ok();
+            var response = new SimpleResponse();
+            response.Success = DatabaseSeeder.DeleteAllPokemons(_db);
+            return Ok(response);
         }
 
         [HttpGet("SeedPokemons")]
         public IActionResult SeedPokemons()
         {
-            DatabaseSeeder.InsertPokemons(_db);
-            return Ok();
+            var response = new SimpleResponse();
+            response.Success = DatabaseSeeder.InsertPokemons(_db);
+            return Ok(response);
         }
     }
 }
