@@ -1,4 +1,5 @@
 global using WhosThatPokemon.Services.PokemonService;
+global using WhosThatPokemon.Services.AdminService;
 global using WhosThatPokemon.Models;
 global using WhosThatPokemon.Dtos.Pokemon;
 global using WhosThatPokemon.Dtos.Type;
@@ -31,6 +32,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             builder.Configuration.GetConnectionString("DefaultConnection"));
     });
 builder.Services.AddScoped<IPokemonService, PokemonService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped(provider => new MapperConfiguration(cfg =>
     {
         cfg.AddProfile(new AutoMapperProfile(provider.GetService<ApplicationDbContext>()));

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WhosThatPokemon.Data;
+using WhosThatPokemon.Services.AdminService;
 
 namespace WhosThatPokemon.Controllers
 {
@@ -7,27 +8,23 @@ namespace WhosThatPokemon.Controllers
     [Route("[controller]")]
     public class AdminController : AdminControllerBase
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IAdminService _adminService;
 
-        public AdminController(ApplicationDbContext db)
+        public AdminController(IAdminService adminService)
         {
-            _db = db;
+            _adminService = adminService;
         }
 
         [HttpGet("DeletePokemons")]
         public ActionResult<SimpleResponse> DeletePokemons()
         {
-            var response = new SimpleResponse();
-            response.Success = DatabaseSeeder.DeleteAllPokemons(_db);
-            return ReturnOkOrInternalError(response);
+            return ReturnOkOrInternalError(_adminService.DeleteAllPokemons());
         }
 
         [HttpGet("SeedPokemons")]
         public ActionResult<SimpleResponse> SeedPokemons()
         {
-            var response = new SimpleResponse();
-            response.Success = DatabaseSeeder.InsertPokemons(_db);
-            return ReturnOkOrInternalError(response);
+            return ReturnOkOrInternalError(_adminService.InsertPokemons());
         }
     }
 }
