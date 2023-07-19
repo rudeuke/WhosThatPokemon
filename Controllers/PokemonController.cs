@@ -4,7 +4,7 @@ namespace WhosThatPokemon.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PokemonController : MyControllerBase
+    public class PokemonController : PokemonControllerBase
     {
         private readonly IPokemonService _pokemonService;
 

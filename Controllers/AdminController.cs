@@ -5,7 +5,7 @@ namespace WhosThatPokemon.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AdminController : Controller
+    public class AdminController : AdminControllerBase
     {
         private readonly ApplicationDbContext _db;
 
@@ -15,19 +15,19 @@ namespace WhosThatPokemon.Controllers
         }
 
         [HttpGet("DeletePokemons")]
-        public IActionResult DeletePokemons()
+        public ActionResult<SimpleResponse> DeletePokemons()
         {
             var response = new SimpleResponse();
             response.Success = DatabaseSeeder.DeleteAllPokemons(_db);
-            return Ok(response);
+            return ReturnOkOrInternalError(response);
         }
 
         [HttpGet("SeedPokemons")]
-        public IActionResult SeedPokemons()
+        public ActionResult<SimpleResponse> SeedPokemons()
         {
             var response = new SimpleResponse();
             response.Success = DatabaseSeeder.InsertPokemons(_db);
-            return Ok(response);
+            return ReturnOkOrInternalError(response);
         }
     }
 }

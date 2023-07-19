@@ -2,7 +2,7 @@
 
 namespace WhosThatPokemon.Controllers
 {
-    public class MyControllerBase : Controller
+    public class PokemonControllerBase : Controller
     {
         protected ActionResult<ServiceResponse<T>> ReturnOkOrNotFound<T>(ServiceResponse<T> response)
         {
