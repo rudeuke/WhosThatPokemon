@@ -13,7 +13,8 @@ namespace WhosThatPokemon.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Seed();
+            modelBuilder.ConfigureTypes();
+            modelBuilder.ConfigurePokemons();
         }
     }
 }

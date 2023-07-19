@@ -4,7 +4,9 @@ namespace WhosThatPokemon.Data
 {
     public static class ModelBuilderExtensions
     {
-        public static void Seed(this ModelBuilder modelBuilder)
+        // Configuring methods contain example data for the database
+
+        public static void ConfigureTypes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Models.Type>()
                 .HasData(
@@ -26,7 +28,7 @@ namespace WhosThatPokemon.Data
                     new Models.Type { Id = 16, PokeType = TypeEnum.Dragon },
                     new Models.Type { Id = 17, PokeType = TypeEnum.Dark },
                     new Models.Type { Id = 18, PokeType = TypeEnum.Fairy }
-                    );
+                );
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.ResistantTo)
@@ -93,7 +95,7 @@ namespace WhosThatPokemon.Data
                     new { ResistedById = 18, ResistantToId = 2 }, // Fairy - Resistant to Fighting
                     new { ResistedById = 18, ResistantToId = 7 }, // Fairy - Resistant to Bug
                     new { ResistedById = 18, ResistantToId = 17 } // Fairy - Resistant to Dark
-                    ));
+                ));
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.VulnerableTo)
@@ -150,7 +152,7 @@ namespace WhosThatPokemon.Data
                     new { EffectiveAgainstId = 17, VulnerableToId = 18 }, // Dark - Vulnerable to Fairy
                     new { EffectiveAgainstId = 18, VulnerableToId = 4 }, // Fairy - Vulnerable to Poison
                     new { EffectiveAgainstId = 18, VulnerableToId = 9 } // Fairy - Vulnerable to Steel
-                    ));
+                ));
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.UnaffectedBy)
@@ -164,14 +166,17 @@ namespace WhosThatPokemon.Data
                     new { IneffectiveToId = 9, UnaffectedById = 4 }, // Steel - Unaffected by Poison
                     new { IneffectiveToId = 17, UnaffectedById = 14 }, // Dark - Unaffected by Psychic
                     new { IneffectiveToId = 18, UnaffectedById = 16 } // Fairy - Unaffected by Dragon
-                    ));
+                ));
+        }
 
+        public static void ConfigurePokemons(this ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Pokemon>().HasData(
                 new Pokemon { Id = 1, OriginalId = 25, Name = "Pikachu", ImageUrl = "~/images/pokemons/pikachu.png" },
                 new Pokemon { Id = 2, OriginalId = 1, Name = "Bulbasaur", ImageUrl = "~/images/pokemons/bulbasaur.png" },
                 new Pokemon { Id = 3, OriginalId = 4, Name = "Charmander", ImageUrl = "~/images/pokemons/charmander.png" },
                 new Pokemon { Id = 4, OriginalId = 7, Name = "Squirtle", ImageUrl = "~/images/pokemons/squirtle.png" }
-                );
+            );
 
             modelBuilder.Entity<Pokemon>()
                 .HasMany(p => p.PokemonTypes)
@@ -181,7 +186,7 @@ namespace WhosThatPokemon.Data
                     new { PokemonsId = 2, PokemonTypesId = 12 },
                     new { PokemonsId = 3, PokemonTypesId = 10 },
                     new { PokemonsId = 4, PokemonTypesId = 11 }
-                    ));
+            ));
         }
     }
 }
