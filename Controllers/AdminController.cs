@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WhosThatPokemon.Data;
-using WhosThatPokemon.Services.AdminService;
 
 namespace WhosThatPokemon.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AdminController : AdminControllerBase
+    public class AdminController : WTPApiControllerBase
     {
         private readonly IAdminService _adminService;
 
