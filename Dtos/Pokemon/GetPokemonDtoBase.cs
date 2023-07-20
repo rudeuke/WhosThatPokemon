@@ -1,6 +1,6 @@
 ﻿namespace WhosThatPokemon.Dtos.Pokemon
 {
-    public class GetPokemonBaseDto
+    public class GetPokemonDtoBase
     {
         public int Id { get; set; }
         public int? OriginalId { get; set; }

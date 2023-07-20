@@ -1,6 +1,6 @@
 ﻿namespace WhosThatPokemon.Dtos.Pokemon
 {
-    public class GetPokemonDetailsDto : GetPokemonBaseDto
+    public class GetPokemonDetailsDto : GetPokemonDtoBase
     {
         public string? ImageUrl { get; set; }
         public string? SilhouetteUrl { get; set; }
