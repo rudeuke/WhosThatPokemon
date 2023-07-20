@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WhosThatPokemon.Dtos.Pokemon
+﻿namespace WhosThatPokemon.Dtos.Pokemon
 {
     public class AddPokemonDto
     {

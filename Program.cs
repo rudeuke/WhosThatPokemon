@@ -1,11 +1,12 @@
 global using WhosThatPokemon.Services.PokemonService;
 global using WhosThatPokemon.Services.AdminService;
+global using WhosThatPokemon.Services.Response;
 global using WhosThatPokemon.Models;
 global using WhosThatPokemon.Dtos.Pokemon;
 global using WhosThatPokemon.Dtos.Type;
+global using WhosThatPokemon.Data;
 global using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using WhosThatPokemon.Data;
 using System.Text.Json.Serialization;
 using WhosThatPokemon;
 

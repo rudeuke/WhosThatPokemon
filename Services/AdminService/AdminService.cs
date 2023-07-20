@@ -1,6 +1,4 @@
-﻿using WhosThatPokemon.Data;
-
-namespace WhosThatPokemon.Services.AdminService
+﻿namespace WhosThatPokemon.Services.AdminService
 {
     public class AdminService : IAdminService
     {

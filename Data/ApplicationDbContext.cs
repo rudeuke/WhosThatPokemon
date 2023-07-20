@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 namespace WhosThatPokemon.Data
 {
     public class ApplicationDbContext : DbContext

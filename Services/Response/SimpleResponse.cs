@@ -1,4 +1,4 @@
-﻿namespace WhosThatPokemon.Models
+﻿namespace WhosThatPokemon.Services.Response
 {
     public class SimpleResponse
     {
