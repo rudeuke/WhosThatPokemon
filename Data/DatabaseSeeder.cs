@@ -27,10 +27,10 @@
                     throw new Exception("Pokemon types missing");
                 }
 
-                var electricType = pokemonTypes.FirstOrDefault(t => t.PokeType == TypeEnum.Electric);
-                var grassType = pokemonTypes.FirstOrDefault(t => t.PokeType == TypeEnum.Grass);
-                var fireType = pokemonTypes.FirstOrDefault(t => t.PokeType == TypeEnum.Fire);
-                var waterType = pokemonTypes.FirstOrDefault(t => t.PokeType == TypeEnum.Water);
+                var electricType = pokemonTypes.SingleOrDefault(t => t.PokeType == TypeEnum.Electric);
+                var grassType = pokemonTypes.SingleOrDefault(t => t.PokeType == TypeEnum.Grass);
+                var fireType = pokemonTypes.SingleOrDefault(t => t.PokeType == TypeEnum.Fire);
+                var waterType = pokemonTypes.SingleOrDefault(t => t.PokeType == TypeEnum.Water);
 
                 db.Pokemons.AddRange(
                     new Pokemon
