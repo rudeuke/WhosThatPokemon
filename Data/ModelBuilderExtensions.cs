@@ -10,162 +10,162 @@ namespace WhosThatPokemon.Data
         {
             modelBuilder.Entity<Models.Type>()
                 .HasData(
-                    new Models.Type { Id = 1, PokeType = TypeEnum.Normal },
-                    new Models.Type { Id = 2, PokeType = TypeEnum.Fighting },
-                    new Models.Type { Id = 3, PokeType = TypeEnum.Flying },
-                    new Models.Type { Id = 4, PokeType = TypeEnum.Poison },
-                    new Models.Type { Id = 5, PokeType = TypeEnum.Ground },
-                    new Models.Type { Id = 6, PokeType = TypeEnum.Rock },
-                    new Models.Type { Id = 7, PokeType = TypeEnum.Bug },
-                    new Models.Type { Id = 8, PokeType = TypeEnum.Ghost },
-                    new Models.Type { Id = 9, PokeType = TypeEnum.Steel },
-                    new Models.Type { Id = 10, PokeType = TypeEnum.Fire },
-                    new Models.Type { Id = 11, PokeType = TypeEnum.Water },
-                    new Models.Type { Id = 12, PokeType = TypeEnum.Grass },
-                    new Models.Type { Id = 13, PokeType = TypeEnum.Electric },
-                    new Models.Type { Id = 14, PokeType = TypeEnum.Psychic },
-                    new Models.Type { Id = 15, PokeType = TypeEnum.Ice },
-                    new Models.Type { Id = 16, PokeType = TypeEnum.Dragon },
-                    new Models.Type { Id = 17, PokeType = TypeEnum.Dark },
-                    new Models.Type { Id = 18, PokeType = TypeEnum.Fairy }
+                    new Models.Type { PokeType = TypeEnum.Normal },
+                    new Models.Type { PokeType = TypeEnum.Fighting },
+                    new Models.Type { PokeType = TypeEnum.Flying },
+                    new Models.Type { PokeType = TypeEnum.Poison },
+                    new Models.Type { PokeType = TypeEnum.Ground },
+                    new Models.Type { PokeType = TypeEnum.Rock },
+                    new Models.Type { PokeType = TypeEnum.Bug },
+                    new Models.Type { PokeType = TypeEnum.Ghost },
+                    new Models.Type { PokeType = TypeEnum.Steel },
+                    new Models.Type { PokeType = TypeEnum.Fire },
+                    new Models.Type { PokeType = TypeEnum.Water },
+                    new Models.Type { PokeType = TypeEnum.Grass },
+                    new Models.Type { PokeType = TypeEnum.Electric },
+                    new Models.Type { PokeType = TypeEnum.Psychic },
+                    new Models.Type { PokeType = TypeEnum.Ice },
+                    new Models.Type { PokeType = TypeEnum.Dragon },
+                    new Models.Type { PokeType = TypeEnum.Dark },
+                    new Models.Type { PokeType = TypeEnum.Fairy }
                 );
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.ResistantTo)
                 .WithMany(t => t.ResistedBy)
                 .UsingEntity(j => j.HasData(
-                    new { ResistedById = 2, ResistantToId = 7 }, // Fighting - Resistant to Bug
-                    new { ResistedById = 2, ResistantToId = 6 }, // Fighting - Resistant to Rock
-                    new { ResistedById = 2, ResistantToId = 17 }, // Fighting - Resistant to Dark
-                    new { ResistedById = 3, ResistantToId = 12 }, // Flying - Resistant to Electric
-                    new { ResistedById = 3, ResistantToId = 2 }, // Flying - Resistant to Fighting
-                    new { ResistedById = 3, ResistantToId = 7 }, // Flying - Resistant to Bug
-                    new { ResistedById = 4, ResistantToId = 12 }, // Poison - Resistant to Electric
-                    new { ResistedById = 4, ResistantToId = 4 }, // Poison - Resistant to Poison (itself)
-                    new { ResistedById = 4, ResistantToId = 2 }, // Poison - Resistant to Fighting
-                    new { ResistedById = 4, ResistantToId = 7 }, // Poison - Resistant to Bug
-                    new { ResistedById = 4, ResistantToId = 18 }, // Poison - Resistant to Fairy
-                    new { ResistedById = 5, ResistantToId = 4 }, // Ground - Resistant to Poison
-                    new { ResistedById = 5, ResistantToId = 6 }, // Ground - Resistant to Rock
-                    new { ResistedById = 6, ResistantToId = 1 }, // Rock - Resistant to Normal
-                    new { ResistedById = 6, ResistantToId = 10 }, // Rock - Resistant to Fire
-                    new { ResistedById = 6, ResistantToId = 4 }, // Rock - Resistant to Poison
-                    new { ResistedById = 6, ResistantToId = 3 }, // Rock - Resistant to Flying
-                    new { ResistedById = 7, ResistantToId = 12 }, // Bug - Resistant to Electric
-                    new { ResistedById = 7, ResistantToId = 2 }, // Bug - Resistant to Fighting
-                    new { ResistedById = 7, ResistantToId = 5 }, // Bug - Resistant to Ground
-                    new { ResistedById = 8, ResistantToId = 4 }, // Ghost - Resistant to Poison
-                    new { ResistedById = 8, ResistantToId = 7 }, // Ghost - Resistant to Bug
-                    new { ResistedById = 9, ResistantToId = 1 }, // Steel - Resistant to Normal
-                    new { ResistedById = 9, ResistantToId = 12 }, // Steel - Resistant to Electric
-                    new { ResistedById = 9, ResistantToId = 15 }, // Steel - Resistant to Ice
-                    new { ResistedById = 9, ResistantToId = 2 }, // Steel - Resistant to Fighting
-                    new { ResistedById = 9, ResistantToId = 14 }, // Steel - Resistant to Psychic
-                    new { ResistedById = 9, ResistantToId = 7 }, // Steel - Resistant to Bug
-                    new { ResistedById = 9, ResistantToId = 6 }, // Steel - Resistant to Rock
-                    new { ResistedById = 9, ResistantToId = 16 }, // Steel - Resistant to Dragon
-                    new { ResistedById = 9, ResistantToId = 9 }, // Steel - Resistant to Steel (itself)
-                    new { ResistedById = 9, ResistantToId = 18 }, // Steel - Resistant to Fairy
-                    new { ResistedById = 10, ResistantToId = 10 }, // Fire - Resistant to Fire (itself)
-                    new { ResistedById = 10, ResistantToId = 12 }, // Fire - Resistant to Electric
-                    new { ResistedById = 10, ResistantToId = 15 }, // Fire - Resistant to Ice
-                    new { ResistedById = 10, ResistantToId = 7 }, // Fire - Resistant to Bug
-                    new { ResistedById = 10, ResistantToId = 9 }, // Fire - Resistant to Steel
-                    new { ResistedById = 10, ResistantToId = 18 }, // Fire - Resistant to Fairy
-                    new { ResistedById = 11, ResistantToId = 10 }, // Water - Resistant to Fire
-                    new { ResistedById = 11, ResistantToId = 11 }, // Water - Resistant to Water (itself)
-                    new { ResistedById = 11, ResistantToId = 15 }, // Water - Resistant to Ice
-                    new { ResistedById = 11, ResistantToId = 9 }, // Water - Resistant to Steel
-                    new { ResistedById = 12, ResistantToId = 11 }, // Grass - Resistant to Water
-                    new { ResistedById = 12, ResistantToId = 12 }, // Grass - Resistant to Grass (itself)
-                    new { ResistedById = 12, ResistantToId = 13 }, // Grass - Resistant to Electric
-                    new { ResistedById = 12, ResistantToId = 5 }, // Grass - Resistant to Ground
-                    new { ResistedById = 13, ResistantToId = 13 }, // Electric - Resistant to Electric (itself)
-                    new { ResistedById = 13, ResistantToId = 3 }, // Electric - Resistant to Flying
-                    new { ResistedById = 13, ResistantToId = 9 }, // Electric - Resistant to Steel
-                    new { ResistedById = 14, ResistantToId = 2 }, // Psychic - Resistant to Fighting
-                    new { ResistedById = 14, ResistantToId = 14 }, // Psychic - Resistant to Psychic (itself)
-                    new { ResistedById = 15, ResistantToId = 15 }, // Ice - Resistant to Ice (itself)
-                    new { ResistedById = 16, ResistantToId = 10 }, // Dragon - Resistant to Fire
-                    new { ResistedById = 16, ResistantToId = 11 }, // Dragon - Resistant to Water
-                    new { ResistedById = 16, ResistantToId = 12 }, // Dragon - Resistant to Grass
-                    new { ResistedById = 16, ResistantToId = 13 }, // Dragon - Resistant to Electric
-                    new { ResistedById = 17, ResistantToId = 8 }, // Dark - Resistant to Ghost
-                    new { ResistedById = 17, ResistantToId = 17 }, // Dark - Resistant to Dark (itself)
-                    new { ResistedById = 18, ResistantToId = 2 }, // Fairy - Resistant to Fighting
-                    new { ResistedById = 18, ResistantToId = 7 }, // Fairy - Resistant to Bug
-                    new { ResistedById = 18, ResistantToId = 17 } // Fairy - Resistant to Dark
+                    new { ResistedByPokeType = TypeEnum.Fighting, ResistantToPokeType = TypeEnum.Bug }, // Fighting - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Fighting, ResistantToPokeType = TypeEnum.Rock }, // Fighting - Resistant to Rock
+                    new { ResistedByPokeType = TypeEnum.Fighting, ResistantToPokeType = TypeEnum.Dark }, // Fighting - Resistant to Dark
+                    new { ResistedByPokeType = TypeEnum.Flying, ResistantToPokeType = TypeEnum.Grass }, // Flying - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Flying, ResistantToPokeType = TypeEnum.Fighting }, // Flying - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Flying, ResistantToPokeType = TypeEnum.Bug }, // Flying - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Poison, ResistantToPokeType = TypeEnum.Grass }, // Poison - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Poison, ResistantToPokeType = TypeEnum.Poison }, // Poison - Resistant to Poison (itself)
+                    new { ResistedByPokeType = TypeEnum.Poison, ResistantToPokeType = TypeEnum.Fighting }, // Poison - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Poison, ResistantToPokeType = TypeEnum.Bug }, // Poison - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Poison, ResistantToPokeType = TypeEnum.Fairy }, // Poison - Resistant to Fairy
+                    new { ResistedByPokeType = TypeEnum.Ground, ResistantToPokeType = TypeEnum.Poison }, // Ground - Resistant to Poison
+                    new { ResistedByPokeType = TypeEnum.Ground, ResistantToPokeType = TypeEnum.Rock }, // Ground - Resistant to Rock
+                    new { ResistedByPokeType = TypeEnum.Rock, ResistantToPokeType = TypeEnum.Normal }, // Rock - Resistant to Normal
+                    new { ResistedByPokeType = TypeEnum.Rock, ResistantToPokeType = TypeEnum.Fire }, // Rock - Resistant to Fire
+                    new { ResistedByPokeType = TypeEnum.Rock, ResistantToPokeType = TypeEnum.Poison }, // Rock - Resistant to Poison
+                    new { ResistedByPokeType = TypeEnum.Rock, ResistantToPokeType = TypeEnum.Flying }, // Rock - Resistant to Flying
+                    new { ResistedByPokeType = TypeEnum.Bug, ResistantToPokeType = TypeEnum.Grass }, // Bug - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Bug, ResistantToPokeType = TypeEnum.Fighting }, // Bug - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Bug, ResistantToPokeType = TypeEnum.Ground }, // Bug - Resistant to Ground
+                    new { ResistedByPokeType = TypeEnum.Ghost, ResistantToPokeType = TypeEnum.Poison }, // Ghost - Resistant to Poison
+                    new { ResistedByPokeType = TypeEnum.Ghost, ResistantToPokeType = TypeEnum.Bug }, // Ghost - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Normal }, // Steel - Resistant to Normal
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Grass }, // Steel - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Ice }, // Steel - Resistant to Ice
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Fighting }, // Steel - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Psychic }, // Steel - Resistant to Psychic
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Bug }, // Steel - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Rock }, // Steel - Resistant to Rock
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Dragon }, // Steel - Resistant to Dragon
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Steel }, // Steel - Resistant to Steel (itself)
+                    new { ResistedByPokeType = TypeEnum.Steel, ResistantToPokeType = TypeEnum.Fairy }, // Steel - Resistant to Fairy
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Fire }, // Fire - Resistant to Fire (itself)
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Grass }, // Fire - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Ice }, // Fire - Resistant to Ice
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Bug }, // Fire - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Steel }, // Fire - Resistant to Steel
+                    new { ResistedByPokeType = TypeEnum.Fire, ResistantToPokeType = TypeEnum.Fairy }, // Fire - Resistant to Fairy
+                    new { ResistedByPokeType = TypeEnum.Water, ResistantToPokeType = TypeEnum.Fire }, // Water - Resistant to Fire
+                    new { ResistedByPokeType = TypeEnum.Water, ResistantToPokeType = TypeEnum.Water }, // Water - Resistant to Water (itself)
+                    new { ResistedByPokeType = TypeEnum.Water, ResistantToPokeType = TypeEnum.Ice }, // Water - Resistant to Ice
+                    new { ResistedByPokeType = TypeEnum.Water, ResistantToPokeType = TypeEnum.Steel }, // Water - Resistant to Steel
+                    new { ResistedByPokeType = TypeEnum.Grass, ResistantToPokeType = TypeEnum.Water }, // Grass - Resistant to Water
+                    new { ResistedByPokeType = TypeEnum.Grass, ResistantToPokeType = TypeEnum.Grass }, // Grass - Resistant to Grass (itself)
+                    new { ResistedByPokeType = TypeEnum.Grass, ResistantToPokeType = TypeEnum.Electric }, // Grass - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Grass, ResistantToPokeType = TypeEnum.Ground }, // Grass - Resistant to Ground
+                    new { ResistedByPokeType = TypeEnum.Electric, ResistantToPokeType = TypeEnum.Electric }, // Electric - Resistant to Electric (itself)
+                    new { ResistedByPokeType = TypeEnum.Electric, ResistantToPokeType = TypeEnum.Flying }, // Electric - Resistant to Flying
+                    new { ResistedByPokeType = TypeEnum.Electric, ResistantToPokeType = TypeEnum.Steel }, // Electric - Resistant to Steel
+                    new { ResistedByPokeType = TypeEnum.Psychic, ResistantToPokeType = TypeEnum.Fighting }, // Psychic - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Psychic, ResistantToPokeType = TypeEnum.Psychic }, // Psychic - Resistant to Psychic (itself)
+                    new { ResistedByPokeType = TypeEnum.Ice, ResistantToPokeType = TypeEnum.Ice }, // Ice - Resistant to Ice (itself)
+                    new { ResistedByPokeType = TypeEnum.Dragon, ResistantToPokeType = TypeEnum.Fire }, // Dragon - Resistant to Fire
+                    new { ResistedByPokeType = TypeEnum.Dragon, ResistantToPokeType = TypeEnum.Water }, // Dragon - Resistant to Water
+                    new { ResistedByPokeType = TypeEnum.Dragon, ResistantToPokeType = TypeEnum.Grass }, // Dragon - Resistant to Grass
+                    new { ResistedByPokeType = TypeEnum.Dragon, ResistantToPokeType = TypeEnum.Electric }, // Dragon - Resistant to Electric
+                    new { ResistedByPokeType = TypeEnum.Dark, ResistantToPokeType = TypeEnum.Ghost }, // Dark - Resistant to Ghost
+                    new { ResistedByPokeType = TypeEnum.Dark, ResistantToPokeType = TypeEnum.Dark }, // Dark - Resistant to Dark (itself)
+                    new { ResistedByPokeType = TypeEnum.Fairy, ResistantToPokeType = TypeEnum.Fighting }, // Fairy - Resistant to Fighting
+                    new { ResistedByPokeType = TypeEnum.Fairy, ResistantToPokeType = TypeEnum.Bug }, // Fairy - Resistant to Bug
+                    new { ResistedByPokeType = TypeEnum.Fairy, ResistantToPokeType = TypeEnum.Dark } // Fairy - Resistant to Dark
                 ));
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.VulnerableTo)
                 .WithMany(t => t.EffectiveAgainst)
                 .UsingEntity(j => j.HasData(
-                    new { EffectiveAgainstId = 1, VulnerableToId = 2 }, // Normal - Vulnerable to Fighting
-                    new { EffectiveAgainstId = 2, VulnerableToId = 3 }, // Fighting - Vulnerable to Flying
-                    new { EffectiveAgainstId = 2, VulnerableToId = 14 }, // Fighting - Vulnerable to Psychic
-                    new { EffectiveAgainstId = 2, VulnerableToId = 18 }, // Fighting - Vulnerable to Fairy
-                    new { EffectiveAgainstId = 3, VulnerableToId = 6 }, // Flying - Vulnerable to Rock
-                    new { EffectiveAgainstId = 3, VulnerableToId = 13 }, // Flying - Vulnerable to Electric
-                    new { EffectiveAgainstId = 3, VulnerableToId = 15 }, // Flying - Vulnerable to Ice
-                    new { EffectiveAgainstId = 4, VulnerableToId = 5 }, // Poison - Vulnerable to Ground
-                    new { EffectiveAgainstId = 4, VulnerableToId = 14 }, // Poison - Vulnerable to Psychic
-                    new { EffectiveAgainstId = 5, VulnerableToId = 11 }, // Ground - Vulnerable to Water
-                    new { EffectiveAgainstId = 5, VulnerableToId = 12 }, // Ground - Vulnerable to Grass
-                    new { EffectiveAgainstId = 5, VulnerableToId = 15 }, // Ground - Vulnerable to Ice
-                    new { EffectiveAgainstId = 6, VulnerableToId = 11 }, // Rock - Vulnerable to Water
-                    new { EffectiveAgainstId = 6, VulnerableToId = 12 }, // Rock - Vulnerable to Grass
-                    new { EffectiveAgainstId = 6, VulnerableToId = 2 }, // Rock - Vulnerable to Fighting
-                    new { EffectiveAgainstId = 6, VulnerableToId = 5 }, // Rock - Vulnerable to Ground
-                    new { EffectiveAgainstId = 6, VulnerableToId = 9 }, // Rock - Vulnerable to Steel
-                    new { EffectiveAgainstId = 7, VulnerableToId = 10 }, // Bug - Vulnerable to Fire
-                    new { EffectiveAgainstId = 7, VulnerableToId = 3 }, // Bug - Vulnerable to Flying
-                    new { EffectiveAgainstId = 7, VulnerableToId = 6 }, // Bug - Vulnerable to Rock
-                    new { EffectiveAgainstId = 8, VulnerableToId = 8 }, // Ghost - Vulnerable to Ghost (itself)
-                    new { EffectiveAgainstId = 8, VulnerableToId = 17 }, // Ghost - Vulnerable to Dark
-                    new { EffectiveAgainstId = 9, VulnerableToId = 10 }, // Steel - Vulnerable to Fire
-                    new { EffectiveAgainstId = 9, VulnerableToId = 2 }, // Steel - Vulnerable to Fighting
-                    new { EffectiveAgainstId = 9, VulnerableToId = 5 }, // Steel - Vulnerable to Ground
-                    new { EffectiveAgainstId = 10, VulnerableToId = 11 }, // Fire - Vulnerable to Water
-                    new { EffectiveAgainstId = 10, VulnerableToId = 5 }, // Fire - Vulnerable to Ground
-                    new { EffectiveAgainstId = 10, VulnerableToId = 6 }, // Fire - Vulnerable to Rock
-                    new { EffectiveAgainstId = 11, VulnerableToId = 13 }, // Water - Vulnerable to Electric
-                    new { EffectiveAgainstId = 11, VulnerableToId = 12 }, // Water - Vulnerable to Grass
-                    new { EffectiveAgainstId = 12, VulnerableToId = 10 }, // Grass - Vulnerable to Fire
-                    new { EffectiveAgainstId = 12, VulnerableToId = 15 }, // Grass - Vulnerable to Ice
-                    new { EffectiveAgainstId = 12, VulnerableToId = 4 }, // Grass - Vulnerable to Poison
-                    new { EffectiveAgainstId = 12, VulnerableToId = 3 }, // Grass - Vulnerable to Flying
-                    new { EffectiveAgainstId = 12, VulnerableToId = 7 }, // Grass - Vulnerable to Bug
-                    new { EffectiveAgainstId = 13, VulnerableToId = 5 }, // Electric - Vulnerable to Ground
-                    new { EffectiveAgainstId = 14, VulnerableToId = 7 }, // Psychic - Vulnerable to Bug
-                    new { EffectiveAgainstId = 14, VulnerableToId = 8 }, // Psychic - Vulnerable to Ghost
-                    new { EffectiveAgainstId = 14, VulnerableToId = 17 }, // Psychic - Vulnerable to Dark
-                    new { EffectiveAgainstId = 15, VulnerableToId = 10 }, // Ice - Vulnerable to Fire
-                    new { EffectiveAgainstId = 15, VulnerableToId = 2 }, // Ice - Vulnerable to Fighting
-                    new { EffectiveAgainstId = 15, VulnerableToId = 6 }, // Ice - Vulnerable to Rock
-                    new { EffectiveAgainstId = 15, VulnerableToId = 9 }, // Ice - Vulnerable to Steel
-                    new { EffectiveAgainstId = 16, VulnerableToId = 15 }, // Dragon - Vulnerable to Ice
-                    new { EffectiveAgainstId = 16, VulnerableToId = 16 }, // Dragon - Vulnerable to Dragon (itself)
-                    new { EffectiveAgainstId = 16, VulnerableToId = 18 }, // Dragon - Vulnerable to Fairy
-                    new { EffectiveAgainstId = 17, VulnerableToId = 2 }, // Dark - Vulnerable to Fighting
-                    new { EffectiveAgainstId = 17, VulnerableToId = 7 }, // Dark - Vulnerable to Bug
-                    new { EffectiveAgainstId = 17, VulnerableToId = 18 }, // Dark - Vulnerable to Fairy
-                    new { EffectiveAgainstId = 18, VulnerableToId = 4 }, // Fairy - Vulnerable to Poison
-                    new { EffectiveAgainstId = 18, VulnerableToId = 9 } // Fairy - Vulnerable to Steel
+                    new { EffectiveAgainstPokeType = TypeEnum.Normal, VulnerableToPokeType = TypeEnum.Fighting }, // Normal - Vulnerable to Fighting
+                    new { EffectiveAgainstPokeType = TypeEnum.Fighting, VulnerableToPokeType = TypeEnum.Flying }, // Fighting - Vulnerable to Flying
+                    new { EffectiveAgainstPokeType = TypeEnum.Fighting, VulnerableToPokeType = TypeEnum.Psychic }, // Fighting - Vulnerable to Psychic
+                    new { EffectiveAgainstPokeType = TypeEnum.Fighting, VulnerableToPokeType = TypeEnum.Fairy }, // Fighting - Vulnerable to Fairy
+                    new { EffectiveAgainstPokeType = TypeEnum.Flying, VulnerableToPokeType = TypeEnum.Rock }, // Flying - Vulnerable to Rock
+                    new { EffectiveAgainstPokeType = TypeEnum.Flying, VulnerableToPokeType = TypeEnum.Electric }, // Flying - Vulnerable to Electric
+                    new { EffectiveAgainstPokeType = TypeEnum.Flying, VulnerableToPokeType = TypeEnum.Ice }, // Flying - Vulnerable to Ice
+                    new { EffectiveAgainstPokeType = TypeEnum.Poison, VulnerableToPokeType = TypeEnum.Ground }, // Poison - Vulnerable to Ground
+                    new { EffectiveAgainstPokeType = TypeEnum.Poison, VulnerableToPokeType = TypeEnum.Psychic }, // Poison - Vulnerable to Psychic
+                    new { EffectiveAgainstPokeType = TypeEnum.Ground, VulnerableToPokeType = TypeEnum.Water }, // Ground - Vulnerable to Water
+                    new { EffectiveAgainstPokeType = TypeEnum.Ground, VulnerableToPokeType = TypeEnum.Grass }, // Ground - Vulnerable to Grass
+                    new { EffectiveAgainstPokeType = TypeEnum.Ground, VulnerableToPokeType = TypeEnum.Ice }, // Ground - Vulnerable to Ice
+                    new { EffectiveAgainstPokeType = TypeEnum.Rock, VulnerableToPokeType = TypeEnum.Water }, // Rock - Vulnerable to Water
+                    new { EffectiveAgainstPokeType = TypeEnum.Rock, VulnerableToPokeType = TypeEnum.Grass }, // Rock - Vulnerable to Grass
+                    new { EffectiveAgainstPokeType = TypeEnum.Rock, VulnerableToPokeType = TypeEnum.Fighting }, // Rock - Vulnerable to Fighting
+                    new { EffectiveAgainstPokeType = TypeEnum.Rock, VulnerableToPokeType = TypeEnum.Ground }, // Rock - Vulnerable to Ground
+                    new { EffectiveAgainstPokeType = TypeEnum.Rock, VulnerableToPokeType = TypeEnum.Steel }, // Rock - Vulnerable to Steel
+                    new { EffectiveAgainstPokeType = TypeEnum.Bug, VulnerableToPokeType = TypeEnum.Fire }, // Bug - Vulnerable to Fire
+                    new { EffectiveAgainstPokeType = TypeEnum.Bug, VulnerableToPokeType = TypeEnum.Flying }, // Bug - Vulnerable to Flying
+                    new { EffectiveAgainstPokeType = TypeEnum.Bug, VulnerableToPokeType = TypeEnum.Rock }, // Bug - Vulnerable to Rock
+                    new { EffectiveAgainstPokeType = TypeEnum.Ghost, VulnerableToPokeType = TypeEnum.Ghost }, // Ghost - Vulnerable to Ghost (itself)
+                    new { EffectiveAgainstPokeType = TypeEnum.Ghost, VulnerableToPokeType = TypeEnum.Dark }, // Ghost - Vulnerable to Dark
+                    new { EffectiveAgainstPokeType = TypeEnum.Steel, VulnerableToPokeType = TypeEnum.Fire }, // Steel - Vulnerable to Fire
+                    new { EffectiveAgainstPokeType = TypeEnum.Steel, VulnerableToPokeType = TypeEnum.Fighting }, // Steel - Vulnerable to Fighting
+                    new { EffectiveAgainstPokeType = TypeEnum.Steel, VulnerableToPokeType = TypeEnum.Ground }, // Steel - Vulnerable to Ground
+                    new { EffectiveAgainstPokeType = TypeEnum.Fire, VulnerableToPokeType = TypeEnum.Water }, // Fire - Vulnerable to Water
+                    new { EffectiveAgainstPokeType = TypeEnum.Fire, VulnerableToPokeType = TypeEnum.Ground }, // Fire - Vulnerable to Ground
+                    new { EffectiveAgainstPokeType = TypeEnum.Fire, VulnerableToPokeType = TypeEnum.Rock }, // Fire - Vulnerable to Rock
+                    new { EffectiveAgainstPokeType = TypeEnum.Water, VulnerableToPokeType = TypeEnum.Electric }, // Water - Vulnerable to Electric
+                    new { EffectiveAgainstPokeType = TypeEnum.Water, VulnerableToPokeType = TypeEnum.Grass }, // Water - Vulnerable to Grass
+                    new { EffectiveAgainstPokeType = TypeEnum.Grass, VulnerableToPokeType = TypeEnum.Fire }, // Grass - Vulnerable to Fire
+                    new { EffectiveAgainstPokeType = TypeEnum.Grass, VulnerableToPokeType = TypeEnum.Ice }, // Grass - Vulnerable to Ice
+                    new { EffectiveAgainstPokeType = TypeEnum.Grass, VulnerableToPokeType = TypeEnum.Poison }, // Grass - Vulnerable to Poison
+                    new { EffectiveAgainstPokeType = TypeEnum.Grass, VulnerableToPokeType = TypeEnum.Flying }, // Grass - Vulnerable to Flying
+                    new { EffectiveAgainstPokeType = TypeEnum.Grass, VulnerableToPokeType = TypeEnum.Bug }, // Grass - Vulnerable to Bug
+                    new { EffectiveAgainstPokeType = TypeEnum.Electric, VulnerableToPokeType = TypeEnum.Ground }, // Electric - Vulnerable to Ground
+                    new { EffectiveAgainstPokeType = TypeEnum.Psychic, VulnerableToPokeType = TypeEnum.Bug }, // Psychic - Vulnerable to Bug
+                    new { EffectiveAgainstPokeType = TypeEnum.Psychic, VulnerableToPokeType = TypeEnum.Ghost }, // Psychic - Vulnerable to Ghost
+                    new { EffectiveAgainstPokeType = TypeEnum.Psychic, VulnerableToPokeType = TypeEnum.Dark }, // Psychic - Vulnerable to Dark
+                    new { EffectiveAgainstPokeType = TypeEnum.Ice, VulnerableToPokeType = TypeEnum.Fire }, // Ice - Vulnerable to Fire
+                    new { EffectiveAgainstPokeType = TypeEnum.Ice, VulnerableToPokeType = TypeEnum.Fighting }, // Ice - Vulnerable to Fighting
+                    new { EffectiveAgainstPokeType = TypeEnum.Ice, VulnerableToPokeType = TypeEnum.Rock }, // Ice - Vulnerable to Rock
+                    new { EffectiveAgainstPokeType = TypeEnum.Ice, VulnerableToPokeType = TypeEnum.Steel }, // Ice - Vulnerable to Steel
+                    new { EffectiveAgainstPokeType = TypeEnum.Dragon, VulnerableToPokeType = TypeEnum.Ice }, // Dragon - Vulnerable to Ice
+                    new { EffectiveAgainstPokeType = TypeEnum.Dragon, VulnerableToPokeType = TypeEnum.Dragon }, // Dragon - Vulnerable to Dragon (itself)
+                    new { EffectiveAgainstPokeType = TypeEnum.Dragon, VulnerableToPokeType = TypeEnum.Fairy }, // Dragon - Vulnerable to Fairy
+                    new { EffectiveAgainstPokeType = TypeEnum.Dark, VulnerableToPokeType = TypeEnum.Fighting }, // Dark - Vulnerable to Fighting
+                    new { EffectiveAgainstPokeType = TypeEnum.Dark, VulnerableToPokeType = TypeEnum.Bug }, // Dark - Vulnerable to Bug
+                    new { EffectiveAgainstPokeType = TypeEnum.Dark, VulnerableToPokeType = TypeEnum.Fairy }, // Dark - Vulnerable to Fairy
+                    new { EffectiveAgainstPokeType = TypeEnum.Fairy, VulnerableToPokeType = TypeEnum.Poison }, // Fairy - Vulnerable to Poison
+                    new { EffectiveAgainstPokeType = TypeEnum.Fairy, VulnerableToPokeType = TypeEnum.Steel } // Fairy - Vulnerable to Steel
                 ));
 
             modelBuilder.Entity<Models.Type>()
                 .HasMany(t => t.UnaffectedBy)
                 .WithMany(t => t.IneffectiveTo)
                 .UsingEntity(j => j.HasData(
-                    new { IneffectiveToId = 1, UnaffectedById = 8 }, // Normal - Unaffected by Ghost
-                    new { IneffectiveToId = 3, UnaffectedById = 5 }, // Flying - Unaffected by Ground
-                    new { IneffectiveToId = 5, UnaffectedById = 13 }, // Ground - Unaffected by Electric
-                    new { IneffectiveToId = 8, UnaffectedById = 1 }, // Ghost - Unaffected by Normal
-                    new { IneffectiveToId = 8, UnaffectedById = 2 }, // Ghost - Unaffected by Fighting
-                    new { IneffectiveToId = 9, UnaffectedById = 4 }, // Steel - Unaffected by Poison
-                    new { IneffectiveToId = 17, UnaffectedById = 14 }, // Dark - Unaffected by Psychic
-                    new { IneffectiveToId = 18, UnaffectedById = 16 } // Fairy - Unaffected by Dragon
+                    new { IneffectiveToPokeType = TypeEnum.Normal, UnaffectedByPokeType = TypeEnum.Ghost }, // Normal - Unaffected by Ghost
+                    new { IneffectiveToPokeType = TypeEnum.Flying, UnaffectedByPokeType = TypeEnum.Ground }, // Flying - Unaffected by Ground
+                    new { IneffectiveToPokeType = TypeEnum.Ground, UnaffectedByPokeType = TypeEnum.Electric }, // Ground - Unaffected by Electric
+                    new { IneffectiveToPokeType = TypeEnum.Ghost, UnaffectedByPokeType = TypeEnum.Normal }, // Ghost - Unaffected by Normal
+                    new { IneffectiveToPokeType = TypeEnum.Ghost, UnaffectedByPokeType = TypeEnum.Fighting }, // Ghost - Unaffected by Fighting
+                    new { IneffectiveToPokeType = TypeEnum.Steel, UnaffectedByPokeType = TypeEnum.Poison }, // Steel - Unaffected by Poison
+                    new { IneffectiveToPokeType = TypeEnum.Dark, UnaffectedByPokeType = TypeEnum.Psychic }, // Dark - Unaffected by Psychic
+                    new { IneffectiveToPokeType = TypeEnum.Fairy, UnaffectedByPokeType = TypeEnum.Dragon } // Fairy - Unaffected by Dragon
                 ));
         }
 
@@ -182,10 +182,10 @@ namespace WhosThatPokemon.Data
                 .HasMany(p => p.PokemonTypes)
                 .WithMany(p => p.Pokemons)
                 .UsingEntity(j => j.HasData(
-                    new { PokemonsId = 1, PokemonTypesId = 13 },
-                    new { PokemonsId = 2, PokemonTypesId = 12 },
-                    new { PokemonsId = 3, PokemonTypesId = 10 },
-                    new { PokemonsId = 4, PokemonTypesId = 11 }
+                    new { PokemonsId = 1, PokemonTypesPokeType = TypeEnum.Electric },
+                    new { PokemonsId = 2, PokemonTypesPokeType = TypeEnum.Grass },
+                    new { PokemonsId = 3, PokemonTypesPokeType = TypeEnum.Fire },
+                    new { PokemonsId = 4, PokemonTypesPokeType = TypeEnum.Water }
             ));
         }
     }

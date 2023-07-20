@@ -5,8 +5,6 @@ namespace WhosThatPokemon.Models
     public class Type
     {
         [Key]
-        public int Id { get; set; }
-        [Required]
         public TypeEnum PokeType { get; set; }
 
         public virtual List<Type> ResistantTo { get; set; } = new();
