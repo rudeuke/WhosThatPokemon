@@ -14,15 +14,15 @@ namespace WhosThatPokemon.Controllers
         }
 
         [HttpGet("DeletePokemons")]
-        public ActionResult<SimpleResponse> DeletePokemons()
+        public async Task<ActionResult<SimpleResponse>> DeletePokemons()
         {
-            return ReturnOkOrInternalError(_adminService.DeleteAllPokemons());
+            return ReturnOkOrInternalError(await _adminService.DeleteAllPokemons());
         }
 
         [HttpGet("SeedPokemons")]
-        public ActionResult<SimpleResponse> SeedPokemons()
+        public async Task<ActionResult<SimpleResponse>> SeedPokemons()
         {
-            return ReturnOkOrInternalError(_adminService.InsertPokemons());
+            return ReturnOkOrInternalError(await _adminService.InsertPokemons());
         }
     }
 }

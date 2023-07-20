@@ -9,20 +9,20 @@
             _db = db;
         }
 
-        public SimpleResponse DeleteAllPokemons()
+        public async Task<SimpleResponse> DeleteAllPokemons()
         {
             var response = new SimpleResponse
             {
-                Success = DatabaseSeeder.DeleteAllPokemons(_db)
+                Success = await DatabaseSeeder.DeleteAllPokemons(_db)
             };
             return response;
         }
 
-        public SimpleResponse InsertPokemons()
+        public async Task<SimpleResponse> InsertPokemons()
         {
             var response = new SimpleResponse
             {
-                Success = DatabaseSeeder.InsertPokemons(_db)
+                Success = await DatabaseSeeder.InsertPokemons(_db)
             };
             return response;
         }

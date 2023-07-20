@@ -1,13 +1,15 @@
-﻿namespace WhosThatPokemon.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WhosThatPokemon.Data
 {
     public static class DatabaseSeeder
     {
-        public static bool DeleteAllPokemons(ApplicationDbContext db)
+        public async static Task<bool> DeleteAllPokemons(ApplicationDbContext db)
         {
             try
             {
                 db.Pokemons.RemoveRange(db.Pokemons);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception)
@@ -16,11 +18,11 @@
             }
         }
 
-        public static bool InsertPokemons(ApplicationDbContext db)
+        public async static Task<bool> InsertPokemons(ApplicationDbContext db)
         {
             try 
             {
-                var pokemonTypes = db.Types.ToList();
+                var pokemonTypes = await db.Types.ToListAsync();
 
                 if (pokemonTypes.Count != Enum.GetNames(typeof(TypeEnum)).Length)
                 {
@@ -62,7 +64,7 @@
                         PokemonTypes = { waterType }
                     });
 
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception)

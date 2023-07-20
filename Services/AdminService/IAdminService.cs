@@ -2,7 +2,7 @@
 {
     public interface IAdminService
     {
-        SimpleResponse DeleteAllPokemons();
-        SimpleResponse InsertPokemons();
+        Task<SimpleResponse> DeleteAllPokemons();
+        Task<SimpleResponse> InsertPokemons();
     }
 }
