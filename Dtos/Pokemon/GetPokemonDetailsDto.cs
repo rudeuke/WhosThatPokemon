@@ -1,10 +1,7 @@
 ﻿namespace WhosThatPokemon.Dtos.Pokemon
 {
-    public class GetPokemonDetailsDto
+    public class GetPokemonDetailsDto : GetPokemonBaseDto
     {
-        public int Id { get; set; }
-        public int? OriginalId { get; set; }
-        public string Name { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
         public string? SilhouetteUrl { get; set; }
 
