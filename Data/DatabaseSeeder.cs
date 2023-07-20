@@ -37,28 +37,28 @@
                     {
                         OriginalId = 25,
                         Name = "Pikachu",
-                        ImageUrl = "~/images/pokemons/pikachu.png",
+                        ImageUrl = "pikachu.png",
                         PokemonTypes = { electricType }
                     },
                     new Pokemon
                     {
                         OriginalId = 1,
                         Name = "Bulbasaur",
-                        ImageUrl = "~/images/pokemons/bulbasaur.png",
+                        ImageUrl = "bulbasaur.png",
                         PokemonTypes = { grassType }
                     },
                     new Pokemon
                     {
                         OriginalId = 4,
                         Name = "Charmander",
-                        ImageUrl = "~/images/pokemons/charmander.png",
+                        ImageUrl = "charmander.png",
                         PokemonTypes = { fireType }
                     },
                     new Pokemon
                     {
                         OriginalId = 7,
                         Name = "Squirtle",
-                        ImageUrl = "~/images/pokemons/squirtle.png",
+                        ImageUrl = "squirtle.png",
                         PokemonTypes = { waterType }
                     });
 

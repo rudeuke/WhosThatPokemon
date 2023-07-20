@@ -172,10 +172,10 @@ namespace WhosThatPokemon.Data
         public static void ConfigurePokemons(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pokemon>().HasData(
-                new Pokemon { Id = 1, OriginalId = 25, Name = "Pikachu", ImageUrl = "~/images/pokemons/pikachu.png" },
-                new Pokemon { Id = 2, OriginalId = 1, Name = "Bulbasaur", ImageUrl = "~/images/pokemons/bulbasaur.png" },
-                new Pokemon { Id = 3, OriginalId = 4, Name = "Charmander", ImageUrl = "~/images/pokemons/charmander.png" },
-                new Pokemon { Id = 4, OriginalId = 7, Name = "Squirtle", ImageUrl = "~/images/pokemons/squirtle.png" }
+                new Pokemon { Id = 1, OriginalId = 25, Name = "Pikachu", ImageUrl = "pikachu.png" },
+                new Pokemon { Id = 2, OriginalId = 1, Name = "Bulbasaur", ImageUrl = "bulbasaur.png" },
+                new Pokemon { Id = 3, OriginalId = 4, Name = "Charmander", ImageUrl = "charmander.png" },
+                new Pokemon { Id = 4, OriginalId = 7, Name = "Squirtle", ImageUrl = "squirtle.png" }
             );
 
             modelBuilder.Entity<Pokemon>()
