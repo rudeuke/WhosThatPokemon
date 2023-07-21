@@ -28,7 +28,7 @@ namespace WhosThatPokemon.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<GetPokemonDto>>>> AddPokemon(AddPokemonDto newPokemonDto)
         {
-            return Ok(await _pokemonService.AddPokemon(newPokemonDto));
+            return ReturnOkOrInternalError(await _pokemonService.AddPokemon(newPokemonDto));
         }
 
         [HttpPut]

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WhosThatPokemon.Services.Response;
 
 namespace WhosThatPokemon.Controllers
 {
@@ -8,12 +9,22 @@ namespace WhosThatPokemon.Controllers
         {
             if (response.Success)
             {
-                response.Message = "Operation successful";
                 return Ok(response);
             }
             else
             {
-                response.Message = "Operation failed";
+                return StatusCode(500, response);
+            }
+        }
+
+        protected ActionResult<ServiceResponse<T>> ReturnOkOrInternalError<T>(ServiceResponse<T> response)
+        {
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            else
+            {
                 return StatusCode(500, response);
             }
         }
