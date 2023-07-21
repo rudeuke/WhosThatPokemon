@@ -12,8 +12,8 @@ using WhosThatPokemon.Data;
 namespace WhosThatPokemon.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230716153850_AddPokemonTypes")]
-    partial class AddPokemonTypes
+    [Migration("20230721190342_Initial-DatabaseFix")]
+    partial class InitialDatabaseFix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,19 +21,22 @@ namespace WhosThatPokemon.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("PokemonType", b =>
                 {
-                    b.Property<int>("PokemonTypesId")
+                    b.Property<int>("PokemonTypesPokeType")
                         .HasColumnType("int");
 
                     b.Property<int>("PokemonsId")
                         .HasColumnType("int");
 
-                    b.HasKey("PokemonTypesId", "PokemonsId");
+                    b.HasKey("PokemonTypesPokeType", "PokemonsId");
 
                     b.HasIndex("PokemonsId");
 
@@ -42,674 +45,674 @@ namespace WhosThatPokemon.Migrations
                     b.HasData(
                         new
                         {
-                            PokemonTypesId = 13,
+                            PokemonTypesPokeType = 4,
                             PokemonsId = 1
                         },
                         new
                         {
-                            PokemonTypesId = 12,
+                            PokemonTypesPokeType = 3,
                             PokemonsId = 2
                         },
                         new
                         {
-                            PokemonTypesId = 10,
+                            PokemonTypesPokeType = 1,
                             PokemonsId = 3
                         },
                         new
                         {
-                            PokemonTypesId = 11,
+                            PokemonTypesPokeType = 2,
                             PokemonsId = 4
                         });
                 });
 
             modelBuilder.Entity("TypeType", b =>
                 {
-                    b.Property<int>("ResistantToId")
+                    b.Property<int>("ResistantToPokeType")
                         .HasColumnType("int");
 
-                    b.Property<int>("ResistedById")
+                    b.Property<int>("ResistedByPokeType")
                         .HasColumnType("int");
 
-                    b.HasKey("ResistantToId", "ResistedById");
+                    b.HasKey("ResistantToPokeType", "ResistedByPokeType");
 
-                    b.HasIndex("ResistedById");
+                    b.HasIndex("ResistedByPokeType");
 
                     b.ToTable("TypeType");
 
                     b.HasData(
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 2
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 6
                         },
                         new
                         {
-                            ResistantToId = 6,
-                            ResistedById = 2
+                            ResistantToPokeType = 12,
+                            ResistedByPokeType = 6
                         },
                         new
                         {
-                            ResistantToId = 17,
-                            ResistedById = 2
+                            ResistantToPokeType = 14,
+                            ResistedByPokeType = 6
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 3
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 9
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 3
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 9
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 3
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 9
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 4
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 7
                         },
                         new
                         {
-                            ResistantToId = 4,
-                            ResistedById = 4
+                            ResistantToPokeType = 7,
+                            ResistedByPokeType = 7
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 4
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 7
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 4
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 7
                         },
                         new
                         {
-                            ResistantToId = 18,
-                            ResistedById = 4
+                            ResistantToPokeType = 17,
+                            ResistedByPokeType = 7
                         },
                         new
                         {
-                            ResistantToId = 4,
-                            ResistedById = 5
+                            ResistantToPokeType = 7,
+                            ResistedByPokeType = 8
                         },
                         new
                         {
-                            ResistantToId = 6,
-                            ResistedById = 5
+                            ResistantToPokeType = 12,
+                            ResistedByPokeType = 8
                         },
                         new
                         {
-                            ResistantToId = 1,
-                            ResistedById = 6
+                            ResistantToPokeType = 0,
+                            ResistedByPokeType = 12
                         },
                         new
                         {
-                            ResistantToId = 10,
-                            ResistedById = 6
+                            ResistantToPokeType = 1,
+                            ResistedByPokeType = 12
                         },
                         new
                         {
-                            ResistantToId = 4,
-                            ResistedById = 6
+                            ResistantToPokeType = 7,
+                            ResistedByPokeType = 12
                         },
                         new
                         {
-                            ResistantToId = 3,
-                            ResistedById = 6
+                            ResistantToPokeType = 9,
+                            ResistedByPokeType = 12
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 7
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 11
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 7
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 11
                         },
                         new
                         {
-                            ResistantToId = 5,
-                            ResistedById = 7
+                            ResistantToPokeType = 8,
+                            ResistedByPokeType = 11
                         },
                         new
                         {
-                            ResistantToId = 4,
-                            ResistedById = 8
+                            ResistantToPokeType = 7,
+                            ResistedByPokeType = 13
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 8
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 13
                         },
                         new
                         {
-                            ResistantToId = 1,
-                            ResistedById = 9
+                            ResistantToPokeType = 0,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 9
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 15,
-                            ResistedById = 9
+                            ResistantToPokeType = 5,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 9
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 14,
-                            ResistedById = 9
+                            ResistantToPokeType = 10,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 9
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 6,
-                            ResistedById = 9
+                            ResistantToPokeType = 12,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 16,
-                            ResistedById = 9
+                            ResistantToPokeType = 15,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 9,
-                            ResistedById = 9
+                            ResistantToPokeType = 16,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 18,
-                            ResistedById = 9
+                            ResistantToPokeType = 17,
+                            ResistedByPokeType = 16
                         },
                         new
                         {
-                            ResistantToId = 10,
-                            ResistedById = 10
+                            ResistantToPokeType = 1,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 10
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 15,
-                            ResistedById = 10
+                            ResistantToPokeType = 5,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 10
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 9,
-                            ResistedById = 10
+                            ResistantToPokeType = 16,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 18,
-                            ResistedById = 10
+                            ResistantToPokeType = 17,
+                            ResistedByPokeType = 1
                         },
                         new
                         {
-                            ResistantToId = 10,
-                            ResistedById = 11
+                            ResistantToPokeType = 1,
+                            ResistedByPokeType = 2
                         },
                         new
                         {
-                            ResistantToId = 11,
-                            ResistedById = 11
+                            ResistantToPokeType = 2,
+                            ResistedByPokeType = 2
                         },
                         new
                         {
-                            ResistantToId = 15,
-                            ResistedById = 11
+                            ResistantToPokeType = 5,
+                            ResistedByPokeType = 2
                         },
                         new
                         {
-                            ResistantToId = 9,
-                            ResistedById = 11
+                            ResistantToPokeType = 16,
+                            ResistedByPokeType = 2
                         },
                         new
                         {
-                            ResistantToId = 11,
-                            ResistedById = 12
+                            ResistantToPokeType = 2,
+                            ResistedByPokeType = 3
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 12
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 3
                         },
                         new
                         {
-                            ResistantToId = 13,
-                            ResistedById = 12
+                            ResistantToPokeType = 4,
+                            ResistedByPokeType = 3
                         },
                         new
                         {
-                            ResistantToId = 5,
-                            ResistedById = 12
+                            ResistantToPokeType = 8,
+                            ResistedByPokeType = 3
                         },
                         new
                         {
-                            ResistantToId = 13,
-                            ResistedById = 13
+                            ResistantToPokeType = 4,
+                            ResistedByPokeType = 4
                         },
                         new
                         {
-                            ResistantToId = 3,
-                            ResistedById = 13
+                            ResistantToPokeType = 9,
+                            ResistedByPokeType = 4
                         },
                         new
                         {
-                            ResistantToId = 9,
-                            ResistedById = 13
+                            ResistantToPokeType = 16,
+                            ResistedByPokeType = 4
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 14
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 10
                         },
                         new
                         {
-                            ResistantToId = 14,
-                            ResistedById = 14
+                            ResistantToPokeType = 10,
+                            ResistedByPokeType = 10
                         },
                         new
                         {
-                            ResistantToId = 15,
-                            ResistedById = 15
+                            ResistantToPokeType = 5,
+                            ResistedByPokeType = 5
                         },
                         new
                         {
-                            ResistantToId = 10,
-                            ResistedById = 16
+                            ResistantToPokeType = 1,
+                            ResistedByPokeType = 15
                         },
                         new
                         {
-                            ResistantToId = 11,
-                            ResistedById = 16
+                            ResistantToPokeType = 2,
+                            ResistedByPokeType = 15
                         },
                         new
                         {
-                            ResistantToId = 12,
-                            ResistedById = 16
+                            ResistantToPokeType = 3,
+                            ResistedByPokeType = 15
                         },
                         new
                         {
-                            ResistantToId = 13,
-                            ResistedById = 16
+                            ResistantToPokeType = 4,
+                            ResistedByPokeType = 15
                         },
                         new
                         {
-                            ResistantToId = 8,
-                            ResistedById = 17
+                            ResistantToPokeType = 13,
+                            ResistedByPokeType = 14
                         },
                         new
                         {
-                            ResistantToId = 17,
-                            ResistedById = 17
+                            ResistantToPokeType = 14,
+                            ResistedByPokeType = 14
                         },
                         new
                         {
-                            ResistantToId = 2,
-                            ResistedById = 18
+                            ResistantToPokeType = 6,
+                            ResistedByPokeType = 17
                         },
                         new
                         {
-                            ResistantToId = 7,
-                            ResistedById = 18
+                            ResistantToPokeType = 11,
+                            ResistedByPokeType = 17
                         },
                         new
                         {
-                            ResistantToId = 17,
-                            ResistedById = 18
+                            ResistantToPokeType = 14,
+                            ResistedByPokeType = 17
                         });
                 });
 
             modelBuilder.Entity("TypeType1", b =>
                 {
-                    b.Property<int>("EffectiveAgainstId")
+                    b.Property<int>("EffectiveAgainstPokeType")
                         .HasColumnType("int");
 
-                    b.Property<int>("VulnerableToId")
+                    b.Property<int>("VulnerableToPokeType")
                         .HasColumnType("int");
 
-                    b.HasKey("EffectiveAgainstId", "VulnerableToId");
+                    b.HasKey("EffectiveAgainstPokeType", "VulnerableToPokeType");
 
-                    b.HasIndex("VulnerableToId");
+                    b.HasIndex("VulnerableToPokeType");
 
                     b.ToTable("TypeType1");
 
                     b.HasData(
                         new
                         {
-                            EffectiveAgainstId = 1,
-                            VulnerableToId = 2
+                            EffectiveAgainstPokeType = 0,
+                            VulnerableToPokeType = 6
                         },
                         new
                         {
-                            EffectiveAgainstId = 2,
-                            VulnerableToId = 3
+                            EffectiveAgainstPokeType = 6,
+                            VulnerableToPokeType = 9
                         },
                         new
                         {
-                            EffectiveAgainstId = 2,
-                            VulnerableToId = 14
+                            EffectiveAgainstPokeType = 6,
+                            VulnerableToPokeType = 10
                         },
                         new
                         {
-                            EffectiveAgainstId = 2,
-                            VulnerableToId = 18
+                            EffectiveAgainstPokeType = 6,
+                            VulnerableToPokeType = 17
                         },
                         new
                         {
-                            EffectiveAgainstId = 3,
-                            VulnerableToId = 6
+                            EffectiveAgainstPokeType = 9,
+                            VulnerableToPokeType = 12
                         },
                         new
                         {
-                            EffectiveAgainstId = 3,
-                            VulnerableToId = 13
+                            EffectiveAgainstPokeType = 9,
+                            VulnerableToPokeType = 4
                         },
                         new
                         {
-                            EffectiveAgainstId = 3,
-                            VulnerableToId = 15
+                            EffectiveAgainstPokeType = 9,
+                            VulnerableToPokeType = 5
                         },
                         new
                         {
-                            EffectiveAgainstId = 4,
-                            VulnerableToId = 5
+                            EffectiveAgainstPokeType = 7,
+                            VulnerableToPokeType = 8
                         },
                         new
                         {
-                            EffectiveAgainstId = 4,
-                            VulnerableToId = 14
+                            EffectiveAgainstPokeType = 7,
+                            VulnerableToPokeType = 10
                         },
                         new
                         {
-                            EffectiveAgainstId = 5,
-                            VulnerableToId = 11
+                            EffectiveAgainstPokeType = 8,
+                            VulnerableToPokeType = 2
                         },
                         new
                         {
-                            EffectiveAgainstId = 5,
-                            VulnerableToId = 12
+                            EffectiveAgainstPokeType = 8,
+                            VulnerableToPokeType = 3
                         },
                         new
                         {
-                            EffectiveAgainstId = 5,
-                            VulnerableToId = 15
+                            EffectiveAgainstPokeType = 8,
+                            VulnerableToPokeType = 5
                         },
                         new
                         {
-                            EffectiveAgainstId = 6,
-                            VulnerableToId = 11
+                            EffectiveAgainstPokeType = 12,
+                            VulnerableToPokeType = 2
                         },
                         new
                         {
-                            EffectiveAgainstId = 6,
-                            VulnerableToId = 12
+                            EffectiveAgainstPokeType = 12,
+                            VulnerableToPokeType = 3
                         },
                         new
                         {
-                            EffectiveAgainstId = 6,
-                            VulnerableToId = 2
+                            EffectiveAgainstPokeType = 12,
+                            VulnerableToPokeType = 6
                         },
                         new
                         {
-                            EffectiveAgainstId = 6,
-                            VulnerableToId = 5
+                            EffectiveAgainstPokeType = 12,
+                            VulnerableToPokeType = 8
                         },
                         new
                         {
-                            EffectiveAgainstId = 6,
-                            VulnerableToId = 9
+                            EffectiveAgainstPokeType = 12,
+                            VulnerableToPokeType = 16
                         },
                         new
                         {
-                            EffectiveAgainstId = 7,
-                            VulnerableToId = 10
+                            EffectiveAgainstPokeType = 11,
+                            VulnerableToPokeType = 1
                         },
                         new
                         {
-                            EffectiveAgainstId = 7,
-                            VulnerableToId = 3
+                            EffectiveAgainstPokeType = 11,
+                            VulnerableToPokeType = 9
                         },
                         new
                         {
-                            EffectiveAgainstId = 7,
-                            VulnerableToId = 6
+                            EffectiveAgainstPokeType = 11,
+                            VulnerableToPokeType = 12
                         },
                         new
                         {
-                            EffectiveAgainstId = 8,
-                            VulnerableToId = 8
+                            EffectiveAgainstPokeType = 13,
+                            VulnerableToPokeType = 13
                         },
                         new
                         {
-                            EffectiveAgainstId = 8,
-                            VulnerableToId = 17
+                            EffectiveAgainstPokeType = 13,
+                            VulnerableToPokeType = 14
                         },
                         new
                         {
-                            EffectiveAgainstId = 9,
-                            VulnerableToId = 10
+                            EffectiveAgainstPokeType = 16,
+                            VulnerableToPokeType = 1
                         },
                         new
                         {
-                            EffectiveAgainstId = 9,
-                            VulnerableToId = 2
+                            EffectiveAgainstPokeType = 16,
+                            VulnerableToPokeType = 6
                         },
                         new
                         {
-                            EffectiveAgainstId = 9,
-                            VulnerableToId = 5
+                            EffectiveAgainstPokeType = 16,
+                            VulnerableToPokeType = 8
                         },
                         new
                         {
-                            EffectiveAgainstId = 10,
-                            VulnerableToId = 11
+                            EffectiveAgainstPokeType = 1,
+                            VulnerableToPokeType = 2
                         },
                         new
                         {
-                            EffectiveAgainstId = 10,
-                            VulnerableToId = 5
+                            EffectiveAgainstPokeType = 1,
+                            VulnerableToPokeType = 8
                         },
                         new
                         {
-                            EffectiveAgainstId = 10,
-                            VulnerableToId = 6
+                            EffectiveAgainstPokeType = 1,
+                            VulnerableToPokeType = 12
                         },
                         new
                         {
-                            EffectiveAgainstId = 11,
-                            VulnerableToId = 13
+                            EffectiveAgainstPokeType = 2,
+                            VulnerableToPokeType = 4
                         },
                         new
                         {
-                            EffectiveAgainstId = 11,
-                            VulnerableToId = 12
+                            EffectiveAgainstPokeType = 2,
+                            VulnerableToPokeType = 3
                         },
                         new
                         {
-                            EffectiveAgainstId = 12,
-                            VulnerableToId = 10
+                            EffectiveAgainstPokeType = 3,
+                            VulnerableToPokeType = 1
                         },
                         new
                         {
-                            EffectiveAgainstId = 12,
-                            VulnerableToId = 15
+                            EffectiveAgainstPokeType = 3,
+                            VulnerableToPokeType = 5
                         },
                         new
                         {
-                            EffectiveAgainstId = 12,
-                            VulnerableToId = 4
+                            EffectiveAgainstPokeType = 3,
+                            VulnerableToPokeType = 7
                         },
                         new
                         {
-                            EffectiveAgainstId = 12,
-                            VulnerableToId = 3
+                            EffectiveAgainstPokeType = 3,
+                            VulnerableToPokeType = 9
                         },
                         new
                         {
-                            EffectiveAgainstId = 12,
-                            VulnerableToId = 7
+                            EffectiveAgainstPokeType = 3,
+                            VulnerableToPokeType = 11
                         },
                         new
                         {
-                            EffectiveAgainstId = 13,
-                            VulnerableToId = 5
+                            EffectiveAgainstPokeType = 4,
+                            VulnerableToPokeType = 8
                         },
                         new
                         {
-                            EffectiveAgainstId = 14,
-                            VulnerableToId = 7
+                            EffectiveAgainstPokeType = 10,
+                            VulnerableToPokeType = 11
                         },
                         new
                         {
-                            EffectiveAgainstId = 14,
-                            VulnerableToId = 8
+                            EffectiveAgainstPokeType = 10,
+                            VulnerableToPokeType = 13
                         },
                         new
                         {
-                            EffectiveAgainstId = 14,
-                            VulnerableToId = 17
+                            EffectiveAgainstPokeType = 10,
+                            VulnerableToPokeType = 14
                         },
                         new
                         {
-                            EffectiveAgainstId = 15,
-                            VulnerableToId = 10
+                            EffectiveAgainstPokeType = 5,
+                            VulnerableToPokeType = 1
                         },
                         new
                         {
-                            EffectiveAgainstId = 15,
-                            VulnerableToId = 2
+                            EffectiveAgainstPokeType = 5,
+                            VulnerableToPokeType = 6
                         },
                         new
                         {
-                            EffectiveAgainstId = 15,
-                            VulnerableToId = 6
+                            EffectiveAgainstPokeType = 5,
+                            VulnerableToPokeType = 12
                         },
                         new
                         {
-                            EffectiveAgainstId = 15,
-                            VulnerableToId = 9
+                            EffectiveAgainstPokeType = 5,
+                            VulnerableToPokeType = 16
                         },
                         new
                         {
-                            EffectiveAgainstId = 16,
-                            VulnerableToId = 15
+                            EffectiveAgainstPokeType = 15,
+                            VulnerableToPokeType = 5
                         },
                         new
                         {
-                            EffectiveAgainstId = 16,
-                            VulnerableToId = 16
+                            EffectiveAgainstPokeType = 15,
+                            VulnerableToPokeType = 15
                         },
                         new
                         {
-                            EffectiveAgainstId = 16,
-                            VulnerableToId = 18
+                            EffectiveAgainstPokeType = 15,
+                            VulnerableToPokeType = 17
                         },
                         new
                         {
-                            EffectiveAgainstId = 17,
-                            VulnerableToId = 2
+                            EffectiveAgainstPokeType = 14,
+                            VulnerableToPokeType = 6
                         },
                         new
                         {
-                            EffectiveAgainstId = 17,
-                            VulnerableToId = 7
+                            EffectiveAgainstPokeType = 14,
+                            VulnerableToPokeType = 11
                         },
                         new
                         {
-                            EffectiveAgainstId = 17,
-                            VulnerableToId = 18
+                            EffectiveAgainstPokeType = 14,
+                            VulnerableToPokeType = 17
                         },
                         new
                         {
-                            EffectiveAgainstId = 18,
-                            VulnerableToId = 4
+                            EffectiveAgainstPokeType = 17,
+                            VulnerableToPokeType = 7
                         },
                         new
                         {
-                            EffectiveAgainstId = 18,
-                            VulnerableToId = 9
+                            EffectiveAgainstPokeType = 17,
+                            VulnerableToPokeType = 16
                         });
                 });
 
             modelBuilder.Entity("TypeType2", b =>
                 {
-                    b.Property<int>("IneffectiveToId")
+                    b.Property<int>("IneffectiveToPokeType")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnaffectedById")
+                    b.Property<int>("UnaffectedByPokeType")
                         .HasColumnType("int");
 
-                    b.HasKey("IneffectiveToId", "UnaffectedById");
+                    b.HasKey("IneffectiveToPokeType", "UnaffectedByPokeType");
 
-                    b.HasIndex("UnaffectedById");
+                    b.HasIndex("UnaffectedByPokeType");
 
                     b.ToTable("TypeType2");
 
                     b.HasData(
                         new
                         {
-                            IneffectiveToId = 1,
-                            UnaffectedById = 8
+                            IneffectiveToPokeType = 0,
+                            UnaffectedByPokeType = 13
                         },
                         new
                         {
-                            IneffectiveToId = 3,
-                            UnaffectedById = 5
+                            IneffectiveToPokeType = 9,
+                            UnaffectedByPokeType = 8
                         },
                         new
                         {
-                            IneffectiveToId = 5,
-                            UnaffectedById = 13
+                            IneffectiveToPokeType = 8,
+                            UnaffectedByPokeType = 4
                         },
                         new
                         {
-                            IneffectiveToId = 8,
-                            UnaffectedById = 1
+                            IneffectiveToPokeType = 13,
+                            UnaffectedByPokeType = 0
                         },
                         new
                         {
-                            IneffectiveToId = 8,
-                            UnaffectedById = 2
+                            IneffectiveToPokeType = 13,
+                            UnaffectedByPokeType = 6
                         },
                         new
                         {
-                            IneffectiveToId = 9,
-                            UnaffectedById = 4
+                            IneffectiveToPokeType = 16,
+                            UnaffectedByPokeType = 7
                         },
                         new
                         {
-                            IneffectiveToId = 17,
-                            UnaffectedById = 14
+                            IneffectiveToPokeType = 14,
+                            UnaffectedByPokeType = 10
                         },
                         new
                         {
-                            IneffectiveToId = 18,
-                            UnaffectedById = 16
+                            IneffectiveToPokeType = 17,
+                            UnaffectedByPokeType = 15
                         });
                 });
 
@@ -742,28 +745,28 @@ namespace WhosThatPokemon.Migrations
                         new
                         {
                             Id = 1,
-                            ImageUrl = "~/images/pokemons/pikachu.png",
+                            ImageUrl = "pikachu.png",
                             Name = "Pikachu",
                             OriginalId = 25
                         },
                         new
                         {
                             Id = 2,
-                            ImageUrl = "~/images/pokemons/bulbasaur.png",
+                            ImageUrl = "bulbasaur.png",
                             Name = "Bulbasaur",
                             OriginalId = 1
                         },
                         new
                         {
                             Id = 3,
-                            ImageUrl = "~/images/pokemons/charmander.png",
+                            ImageUrl = "charmander.png",
                             Name = "Charmander",
                             OriginalId = 4
                         },
                         new
                         {
                             Id = 4,
-                            ImageUrl = "~/images/pokemons/squirtle.png",
+                            ImageUrl = "squirtle.png",
                             Name = "Squirtle",
                             OriginalId = 7
                         });
@@ -771,108 +774,84 @@ namespace WhosThatPokemon.Migrations
 
             modelBuilder.Entity("WhosThatPokemon.Models.Type", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("PokeType")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PokeType");
 
                     b.ToTable("Types");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
                             PokeType = 0
                         },
                         new
                         {
-                            Id = 2,
                             PokeType = 6
                         },
                         new
                         {
-                            Id = 3,
                             PokeType = 9
                         },
                         new
                         {
-                            Id = 4,
                             PokeType = 7
                         },
                         new
                         {
-                            Id = 5,
                             PokeType = 8
                         },
                         new
                         {
-                            Id = 6,
                             PokeType = 12
                         },
                         new
                         {
-                            Id = 7,
                             PokeType = 11
                         },
                         new
                         {
-                            Id = 8,
                             PokeType = 13
                         },
                         new
                         {
-                            Id = 9,
                             PokeType = 16
                         },
                         new
                         {
-                            Id = 10,
                             PokeType = 1
                         },
                         new
                         {
-                            Id = 11,
                             PokeType = 2
                         },
                         new
                         {
-                            Id = 12,
                             PokeType = 3
                         },
                         new
                         {
-                            Id = 13,
                             PokeType = 4
                         },
                         new
                         {
-                            Id = 14,
                             PokeType = 10
                         },
                         new
                         {
-                            Id = 15,
                             PokeType = 5
                         },
                         new
                         {
-                            Id = 16,
                             PokeType = 15
                         },
                         new
                         {
-                            Id = 17,
                             PokeType = 14
                         },
                         new
                         {
-                            Id = 18,
                             PokeType = 17
                         });
                 });
@@ -881,7 +860,7 @@ namespace WhosThatPokemon.Migrations
                 {
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("PokemonTypesId")
+                        .HasForeignKey("PokemonTypesPokeType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -896,13 +875,13 @@ namespace WhosThatPokemon.Migrations
                 {
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("ResistantToId")
+                        .HasForeignKey("ResistantToPokeType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("ResistedById")
+                        .HasForeignKey("ResistedByPokeType")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
@@ -911,13 +890,13 @@ namespace WhosThatPokemon.Migrations
                 {
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("EffectiveAgainstId")
+                        .HasForeignKey("EffectiveAgainstPokeType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("VulnerableToId")
+                        .HasForeignKey("VulnerableToPokeType")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
@@ -926,13 +905,13 @@ namespace WhosThatPokemon.Migrations
                 {
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("IneffectiveToId")
+                        .HasForeignKey("IneffectiveToPokeType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WhosThatPokemon.Models.Type", null)
                         .WithMany()
-                        .HasForeignKey("UnaffectedById")
+                        .HasForeignKey("UnaffectedByPokeType")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
