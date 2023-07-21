@@ -15,6 +15,8 @@ namespace WhosThatPokemon
             CreateMap<Pokemon, string>().ConvertUsing(src => src.Name.ToString());
             CreateMap<AddPokemonDto, Pokemon>()
                 .ForMember(dest => dest.PokemonTypes, opt => opt.MapFrom(src => MapPokemonTypes(src.PokemonTypes)));
+            CreateMap<UpdatePokemonDto, Pokemon>()
+                .ForMember(dest => dest.PokemonTypes, opt => opt.MapFrom(src => MapPokemonTypes(src.PokemonTypes)));
             CreateMap<Models.Type, GetTypeDetailsDto>();
             CreateMap<Models.Type, string>().ConvertUsing(src => src.PokeType.ToString());
         }

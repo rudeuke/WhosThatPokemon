@@ -30,5 +30,11 @@ namespace WhosThatPokemon.Controllers
         {
             return Ok(await _pokemonService.AddPokemon(newPokemonDto));
         }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetPokemonDto>>> UpdatePokemon(UpdatePokemonDto updatedPokemonDto)
+        {
+            return ReturnOkOrNotFound(await _pokemonService.UpdatePokemon(updatedPokemonDto));
+        }
     }
 }

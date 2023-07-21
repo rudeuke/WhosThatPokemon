@@ -5,5 +5,6 @@
         Task<ServiceResponse<List<GetPokemonDto>>> GetAllPokemons();
         Task<ServiceResponse<GetPokemonDetailsDto>> GetPokemonById(int id);
         Task<ServiceResponse<List<GetPokemonDto>>> AddPokemon(AddPokemonDto newPokemonDto);
+        Task<ServiceResponse<GetPokemonDto>> UpdatePokemon(UpdatePokemonDto updatedPokemonDto);
     }
 }

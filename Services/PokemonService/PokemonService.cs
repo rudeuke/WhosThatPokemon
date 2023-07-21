@@ -45,5 +45,30 @@ namespace WhosThatPokemon.Services.PokemonService
             serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetPokemonDto>> UpdatePokemon(UpdatePokemonDto updatedPokemonDto)
+        {
+            var serviceResponse = new ServiceResponse<GetPokemonDto>();
+            var pokemon = await _db.Pokemons.FindAsync(updatedPokemonDto.Id);
+
+            if (pokemon == null)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Pokemon not found.";
+                return serviceResponse;
+            }
+
+            var updatedPokemon = _mapper.Map<Pokemon>(updatedPokemonDto);
+            pokemon.OriginalId = updatedPokemon.OriginalId;
+            pokemon.Name = updatedPokemon.Name;
+            pokemon.ImageUrl = updatedPokemon.ImageUrl;
+            pokemon.SilhouetteUrl = updatedPokemon.SilhouetteUrl;
+            pokemon.PokemonTypes = updatedPokemon.PokemonTypes;
+
+            await _db.SaveChangesAsync();
+            serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
+
+            return serviceResponse;
+        }
     }
 }
