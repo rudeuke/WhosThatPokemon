@@ -116,7 +116,8 @@ namespace WhosThatPokemon.Services.PokemonService
                 pokemon.Name = updatedPokemon.Name;
                 pokemon.ImageUrl = updatedPokemon.ImageUrl;
                 pokemon.SilhouetteUrl = updatedPokemon.SilhouetteUrl;
-                pokemon.PokemonTypes = updatedPokemon.PokemonTypes;
+                pokemon.PokemonTypes.Clear();
+                pokemon.PokemonTypes.AddRange(updatedPokemon.PokemonTypes);
 
                 await _db.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);

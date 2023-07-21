@@ -2,7 +2,6 @@
 {
     public class GetTypeDetailsDto
     {
-        public int Id { get; set; }
         public TypeEnum PokeType { get; set; }
 
         public virtual List<string> ResistantTo { get; set; } = new();
