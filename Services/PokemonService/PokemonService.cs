@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WhosThatPokemon.Dtos.Pokemon;
 
 namespace WhosThatPokemon.Services.PokemonService
 {
@@ -32,6 +33,35 @@ namespace WhosThatPokemon.Services.PokemonService
 
             var pokemons = await _db.Pokemons.ToListAsync();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetPokemonDto>>> DeletePokemon(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
+
+            try
+            {
+                var pokemon = await _db.Pokemons.FindAsync(id);
+
+                if (pokemon == null)
+                {
+                    throw new Exception("Pokemon not found.");
+                }
+
+                _db.Pokemons.Remove(pokemon);
+                await _db.SaveChangesAsync();
+
+                var pokemons = await _db.Pokemons.ToListAsync();
+                serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                return serviceResponse;
+            }
+
             return serviceResponse;
         }
 

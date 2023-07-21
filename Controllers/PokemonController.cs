@@ -36,5 +36,11 @@ namespace WhosThatPokemon.Controllers
         {
             return ReturnOkOrNotFound(await _pokemonService.UpdatePokemon(updatedPokemonDto));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<List<GetPokemonDto>>>> Delete(int id)
+        {
+            return ReturnOkOrNotFound(await _pokemonService.DeletePokemon(id));
+        }
     }
 }
