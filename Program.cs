@@ -6,9 +6,11 @@ global using WhosThatPokemon.Dtos.Pokemon;
 global using WhosThatPokemon.Dtos.Type;
 global using WhosThatPokemon.Data;
 global using AutoMapper;
+global using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using WhosThatPokemon;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     });
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddMediatR(cfg =>
+    {
+        cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+    });
 builder.Services.AddScoped(provider => new MapperConfiguration(cfg =>
     {
         cfg.AddProfile(new AutoMapperProfile(provider.GetService<ApplicationDbContext>()));
