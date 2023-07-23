@@ -1,50 +1,30 @@
-﻿namespace WhosThatPokemon.Services.AdminService
+﻿using WhosThatPokemon.Commands;
+
+namespace WhosThatPokemon.Services.AdminService
 {
     public class AdminService : IAdminService
     {
         private readonly ApplicationDbContext _db;
+        private readonly IMediator _mediator;
 
-        public AdminService(ApplicationDbContext db)
+        public AdminService(ApplicationDbContext db, IMediator mediator)
         {
             _db = db;
+            _mediator = mediator;
         }
 
         public async Task<SimpleResponse> DeleteAllPokemons()
         {
-            var response = new SimpleResponse
-            {
-                Success = await DatabaseSeeder.DeleteAllPokemons(_db)
-            };
-
-            if (response.Success)
-            {
-                response.Message = "Pokemons deleted";
-            }
-            else
-            {
-                response.Message = "Failed to delete pokemons";
-            }
-
-            return response;
+            var command = new DeleteAllPokemonsCommand();
+            var result = await _mediator.Send(command);
+            return result;
         }
 
         public async Task<SimpleResponse> InsertPokemons()
         {
-            var response = new SimpleResponse
-            {
-                Success = await DatabaseSeeder.InsertPokemons(_db)
-            };
-
-            if (response.Success)
-            {
-                response.Message = "Pokemons inserted";
-            }
-            else
-            {
-                response.Message = "Failed to insert pokemons";
-            }
-
-            return response;
+            var command = new InsertPokemonsCommand();
+            var result = await _mediator.Send(command);
+            return result;
         }
     }
 }
