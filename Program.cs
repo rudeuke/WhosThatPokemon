@@ -11,6 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using WhosThatPokemon;
 using System.Reflection;
+using FluentValidation;
+using WhosThatPokemon.Validation;
+using WhosThatPokemon.PipelineBehaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +43,8 @@ builder.Services.AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
     });
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(AddPokemonCommandValidator));
 builder.Services.AddScoped(provider => new MapperConfiguration(cfg =>
     {
         cfg.AddProfile(new AutoMapperProfile(provider.GetService<ApplicationDbContext>()));
