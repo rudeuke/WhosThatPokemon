@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using System.Net;
+using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.PipelineBehaviors
 {
@@ -23,7 +25,7 @@ namespace WhosThatPokemon.PipelineBehaviors
 
             if (failures.Any())
             {
-                throw new ValidationException(failures);
+                throw new ValidationExceptionWithStatusCode(failures, HttpStatusCode.BadRequest);
             }
 
             return await next();

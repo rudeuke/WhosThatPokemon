@@ -1,5 +1,6 @@
-﻿using WhosThatPokemon.Commands;
-using WhosThatPokemon.Dtos.Pokemon;
+﻿using System.Net;
+using WhosThatPokemon.Commands;
+using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
@@ -22,7 +23,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
             if (pokemon == null)
             {
-                throw new Exception("Pokemon not found.");
+                throw new ExceptionWithStatusCode("Pokemon not found.", HttpStatusCode.NotFound);
             }
 
             var updatedPokemon = _mapper.Map<Pokemon>(request.UpdatedPokemonDto);

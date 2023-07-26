@@ -1,4 +1,6 @@
-﻿using WhosThatPokemon.Commands;
+﻿using System.Net;
+using WhosThatPokemon.Commands;
+using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
@@ -15,7 +17,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
         {
             if (!await DatabaseSeeder.DeleteAllPokemons(_db))
             {
-                throw new Exception("Failed to delete pokemons");
+                throw new ExceptionWithStatusCode("Failed to delete pokemons", HttpStatusCode.InternalServerError);
             }
 
             var response = new SimpleResponse

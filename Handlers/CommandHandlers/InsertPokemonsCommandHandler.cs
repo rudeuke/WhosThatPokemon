@@ -1,4 +1,6 @@
-﻿using WhosThatPokemon.Commands;
+﻿using System.Net;
+using WhosThatPokemon.Commands;
+using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
@@ -15,7 +17,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
         {
             if (!await DatabaseSeeder.InsertPokemons(_db))
             {
-                throw new Exception("Error inserting pokemons");
+                throw new ExceptionWithStatusCode("Error inserting pokemons", HttpStatusCode.InternalServerError);
             }
 
             var response = new SimpleResponse

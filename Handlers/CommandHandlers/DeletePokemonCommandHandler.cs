@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net;
 using WhosThatPokemon.Commands;
+using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
@@ -22,7 +24,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
             if (pokemon == null)
             {
-                throw new Exception("Pokemon not found.");
+                throw new ExceptionWithStatusCode("Pokemon not found.", HttpStatusCode.NotFound);
             }
 
             _db.Pokemons.Remove(pokemon);

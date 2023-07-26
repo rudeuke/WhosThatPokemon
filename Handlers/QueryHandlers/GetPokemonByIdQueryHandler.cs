@@ -1,4 +1,6 @@
-﻿using WhosThatPokemon.Queries;
+﻿using System.Net;
+using WhosThatPokemon.Exceptions;
+using WhosThatPokemon.Queries;
 
 namespace WhosThatPokemon.Handlers.QueryHandlers
 {
@@ -20,7 +22,7 @@ namespace WhosThatPokemon.Handlers.QueryHandlers
 
             if (pokemon == null)
             {
-                throw new Exception("Pokemon not found.");
+                throw new ExceptionWithStatusCode("Pokemon not found.", HttpStatusCode.NotFound);
             }
 
             serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
