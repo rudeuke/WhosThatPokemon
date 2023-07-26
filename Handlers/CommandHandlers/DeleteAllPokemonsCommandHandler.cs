@@ -13,17 +13,15 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
         public async Task<SimpleResponse> Handle(DeleteAllPokemonsCommand request, CancellationToken cancellationToken)
         {
-            var response = new SimpleResponse
-            {
-                Success = await DatabaseSeeder.DeleteAllPokemons(_db)
-            };
-
-            if (!response.Success)
+            if (!await DatabaseSeeder.DeleteAllPokemons(_db))
             {
                 throw new Exception("Failed to delete pokemons");
             }
 
-            response.Message = "Pokemons deleted";
+            var response = new SimpleResponse
+            {
+                Message = "Pokemons deleted"
+            };
             return response;
         }
     }

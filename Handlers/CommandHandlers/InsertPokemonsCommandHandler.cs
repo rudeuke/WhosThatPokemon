@@ -13,17 +13,15 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
         public async Task<SimpleResponse> Handle(InsertPokemonsCommand request, CancellationToken cancellationToken)
         {
-            var response = new SimpleResponse
-            {
-                Success = await DatabaseSeeder.InsertPokemons(_db)
-            };
-
-            if (!response.Success)
+            if (!await DatabaseSeeder.InsertPokemons(_db))
             {
                 throw new Exception("Error inserting pokemons");
             }
 
-            response.Message = "Pokemons inserted";
+            var response = new SimpleResponse
+            {
+                Message = "Pokemons inserted"
+            };
             return response;
         }
     }
