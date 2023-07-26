@@ -18,32 +18,23 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
         {
             var serviceResponse = new ServiceResponse<GetPokemonDto>();
 
-            try
+            var pokemon = await _db.Pokemons.FindAsync(request.UpdatedPokemonDto.Id);
+
+            if (pokemon == null)
             {
-                var pokemon = await _db.Pokemons.FindAsync(request.UpdatedPokemonDto.Id);
-
-                if (pokemon == null)
-                {
-                    throw new Exception("Pokemon not found.");
-                }
-
-                var updatedPokemon = _mapper.Map<Pokemon>(request.UpdatedPokemonDto);
-                pokemon.OriginalId = updatedPokemon.OriginalId;
-                pokemon.Name = updatedPokemon.Name;
-                pokemon.ImageUrl = updatedPokemon.ImageUrl;
-                pokemon.SilhouetteUrl = updatedPokemon.SilhouetteUrl;
-                pokemon.PokemonTypes.Clear();
-                pokemon.PokemonTypes.AddRange(updatedPokemon.PokemonTypes);
-
-                await _db.SaveChangesAsync();
-                serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
+                throw new Exception("Pokemon not found.");
             }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                return serviceResponse;
-            }
+
+            var updatedPokemon = _mapper.Map<Pokemon>(request.UpdatedPokemonDto);
+            pokemon.OriginalId = updatedPokemon.OriginalId;
+            pokemon.Name = updatedPokemon.Name;
+            pokemon.ImageUrl = updatedPokemon.ImageUrl;
+            pokemon.SilhouetteUrl = updatedPokemon.SilhouetteUrl;
+            pokemon.PokemonTypes.Clear();
+            pokemon.PokemonTypes.AddRange(updatedPokemon.PokemonTypes);
+
+            await _db.SaveChangesAsync();
+            serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
 
             return serviceResponse;
         }

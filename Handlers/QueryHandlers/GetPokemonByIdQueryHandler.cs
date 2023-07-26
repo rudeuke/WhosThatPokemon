@@ -16,25 +16,14 @@ namespace WhosThatPokemon.Handlers.QueryHandlers
         public async Task<ServiceResponse<GetPokemonDetailsDto>> Handle(GetPokemonByIdQuery request, CancellationToken cancellationToken)
         {
             var serviceResponse = new ServiceResponse<GetPokemonDetailsDto>();
+            var pokemon = await _db.Pokemons.FindAsync(request.Id);
 
-            try
+            if (pokemon == null)
             {
-                var pokemon = await _db.Pokemons.FindAsync(request.Id);
-
-                if (pokemon == null)
-                {
-                    throw new Exception("Pokemon not found.");
-                }
-
-                serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                return serviceResponse;
+                throw new Exception("Pokemon not found.");
             }
 
+            serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
             return serviceResponse;
         }
     }

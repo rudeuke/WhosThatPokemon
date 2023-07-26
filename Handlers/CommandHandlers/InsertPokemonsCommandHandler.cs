@@ -18,15 +18,12 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
                 Success = await DatabaseSeeder.InsertPokemons(_db)
             };
 
-            if (response.Success)
+            if (!response.Success)
             {
-                response.Message = "Pokemons inserted";
-            }
-            else
-            {
-                response.Message = "Failed to insert pokemons";
+                throw new Exception("Error inserting pokemons");
             }
 
+            response.Message = "Pokemons inserted";
             return response;
         }
     }

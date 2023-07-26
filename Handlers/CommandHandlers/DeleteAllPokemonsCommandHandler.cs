@@ -18,15 +18,12 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
                 Success = await DatabaseSeeder.DeleteAllPokemons(_db)
             };
 
-            if (response.Success)
+            if (!response.Success)
             {
-                response.Message = "Pokemons deleted";
-            }
-            else
-            {
-                response.Message = "Failed to delete pokemons";
+                throw new Exception("Failed to delete pokemons");
             }
 
+            response.Message = "Pokemons deleted";
             return response;
         }
     }

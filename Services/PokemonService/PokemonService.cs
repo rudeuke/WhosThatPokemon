@@ -3,48 +3,35 @@ using WhosThatPokemon.Queries;
 
 namespace WhosThatPokemon.Services.PokemonService
 {
-    public class PokemonService : IPokemonService
+    public class PokemonService : ServiceBase, IPokemonService
     {
-        private readonly IMediator _mediator;
-
-        public PokemonService(IMediator mediator)
+        public PokemonService(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         public async Task<ServiceResponse<List<GetPokemonDto>>> AddPokemon(AddPokemonDto newPokemonDto)
         {
-            var command = new AddPokemonCommand(newPokemonDto);
-            var result = await _mediator.Send(command);
-            return result;
+            return await HandleCommandOrQuery(new AddPokemonCommand(newPokemonDto));
         }
 
         public async Task<ServiceResponse<List<GetPokemonDto>>> DeletePokemon(int id)
         {
-            var command = new DeletePokemonCommand(id);
-            var result = await _mediator.Send(command);
-            return result;
+            return await HandleCommandOrQuery(new DeletePokemonCommand(id));
         }
 
         public async Task<ServiceResponse<List<GetPokemonDto>>> GetAllPokemons()
         {
-            var query = new GetAllPokemonsQuery();
-            var result = await _mediator.Send(query);
-            return result;
+            return await HandleCommandOrQuery(new GetAllPokemonsQuery());;
         }
 
         public async Task<ServiceResponse<GetPokemonDetailsDto>> GetPokemonById(int id)
         {
-            var query = new GetPokemonByIdQuery(id);
-            var result = await _mediator.Send(query);
-            return result;
+            return await HandleCommandOrQuery(new GetPokemonByIdQuery(id));
         }
 
         public async Task<ServiceResponse<GetPokemonDto>> UpdatePokemon(UpdatePokemonDto updatedPokemonDto)
         {
-            var command = new UpdatePokemonCommand(updatedPokemonDto);
-            var result = await _mediator.Send(command);
-            return result;
+            return await HandleCommandOrQuery(new UpdatePokemonCommand(updatedPokemonDto));
         }
     }
 }

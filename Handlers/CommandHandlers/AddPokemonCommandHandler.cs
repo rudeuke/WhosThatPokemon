@@ -18,18 +18,9 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
         {
             var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
 
-            try
-            {
-                var newPokemon = _mapper.Map<Pokemon>(request.NewPokemonDto);
-                _db.Pokemons.Add(newPokemon);
-                await _db.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                return serviceResponse;
-            }
+            var newPokemon = _mapper.Map<Pokemon>(request.NewPokemonDto);
+            _db.Pokemons.Add(newPokemon);
+            await _db.SaveChangesAsync();
 
             var pokemons = await _db.Pokemons.ToListAsync();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
