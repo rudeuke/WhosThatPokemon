@@ -36,7 +36,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
             await _db.SaveChangesAsync();
             serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
-
+            serviceResponse.Message = "Pokemon updated";
             return serviceResponse;
         }
     }

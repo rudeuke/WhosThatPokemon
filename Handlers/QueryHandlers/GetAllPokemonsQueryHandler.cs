@@ -19,6 +19,7 @@ namespace WhosThatPokemon.Handlers.QueryHandlers
             var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
             var pokemons = await _db.Pokemons.ToListAsync();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
+            serviceResponse.Message = "All pokemons retrieved successfully.";
             return serviceResponse;
         }
     }

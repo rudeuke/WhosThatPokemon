@@ -26,6 +26,7 @@ namespace WhosThatPokemon.Handlers.QueryHandlers
             }
 
             serviceResponse.Data = _mapper.Map<GetPokemonDetailsDto>(pokemon);
+            serviceResponse.Message = "Pokemon retrieved successfully.";
             return serviceResponse;
         }
     }

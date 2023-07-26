@@ -24,6 +24,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
             var pokemons = await _db.Pokemons.ToListAsync();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
+            serviceResponse.Message = "New pokemon added successfully";
             return serviceResponse;
         }
     }

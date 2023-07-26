@@ -32,7 +32,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
 
             var pokemons = await _db.Pokemons.ToListAsync();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
-
+            serviceResponse.Message = "Pokemon deleted";
             return serviceResponse;
         }
     }
