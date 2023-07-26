@@ -1,43 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using WhosThatPokemon.Services.Response;
 
 namespace WhosThatPokemon.Controllers
 {
     public class WTPApiControllerBase : Controller
     {
-        protected ActionResult<SimpleResponse> ReturnOkOrInternalError(SimpleResponse response)
+        protected ActionResult<TResponse> ReturnHttpResponse<TResponse>(TResponse response) 
+            where TResponse : SimpleResponse
         {
-            if (response.Success)
+            switch (response.StatusCode)
             {
-                return Ok(response);
-            }
-            else
-            {
-                return StatusCode(500, response);
-            }
-        }
-
-        protected ActionResult<ServiceResponse<T>> ReturnOkOrInternalError<T>(ServiceResponse<T> response)
-        {
-            if (response.Success)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return StatusCode(500, response);
-            }
-        }
-
-        protected ActionResult<ServiceResponse<T>> ReturnOkOrNotFound<T>(ServiceResponse<T> response)
-        {
-            if (response.Success)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return NotFound(response);
+                case HttpStatusCode.OK:
+                    return Ok(response);
+                //case HttpStatusCode.Created:
+                //    return StatusCode((int)response.StatusCode, response);
+                case HttpStatusCode.BadRequest:
+                    return BadRequest(response);
+                case HttpStatusCode.NotFound:
+                    return NotFound(response);
+                //case HttpStatusCode.InternalServerError:
+                //    return StatusCode((int)response.StatusCode, response);
+                //case HttpStatusCode.NotImplemented:
+                //    return StatusCode((int)response.StatusCode, response);
+                default:
+                    return StatusCode((int)response.StatusCode, response);
             }
         }
     }
