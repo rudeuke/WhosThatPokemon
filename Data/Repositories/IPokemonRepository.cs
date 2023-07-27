@@ -6,6 +6,6 @@
         Task<List<Pokemon>> GetAll();
         Task Add(Pokemon pokemon);
         Task Update(Pokemon pokemon);
-        Task Delete(int id);
+        Task Delete(Pokemon pokemon);
     }
 }

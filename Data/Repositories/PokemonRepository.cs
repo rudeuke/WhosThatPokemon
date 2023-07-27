@@ -13,12 +13,14 @@ namespace WhosThatPokemon.Data.Repositories
 
         public async Task Add(Pokemon pokemon)
         {
-            throw new NotImplementedException();
+            _db.Pokemons.Add(pokemon);
+            await _db.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Pokemon pokemon)
         {
-            throw new NotImplementedException();
+            _db.Pokemons.Remove(pokemon);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<List<Pokemon>> GetAll()
@@ -28,12 +30,13 @@ namespace WhosThatPokemon.Data.Repositories
 
         public async Task<Pokemon> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _db.Pokemons.FindAsync(id);
         }
 
         public async Task Update(Pokemon pokemon)
         {
-            throw new NotImplementedException();
+            _db.Pokemons.Update(pokemon);
+            await _db.SaveChangesAsync();
         }
     }
 }
