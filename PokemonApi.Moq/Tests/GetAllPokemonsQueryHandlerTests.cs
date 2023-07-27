@@ -61,5 +61,36 @@ namespace PokemonApi.Moq.Tests
             result.Data.First().Id.Should().Be(expectedResponse.Data.First().Id);
             result.Data.First().Name.Should().Be(expectedResponse.Data.First().Name);
         }
+
+        [Fact]
+        public async Task Handle_ShouldReturnEmptyList_WhenPokemonsDoNotExist()
+        {
+            // Arrange
+            var expectedResponse = new ServiceResponse<List<GetPokemonDto>>
+            {
+                Data = new List<GetPokemonDto>(),
+                Success = true,
+                StatusCode = HttpStatusCode.OK
+            };
+            var query = new GetAllPokemonsQuery();
+
+            _pokemonRepositoryMock.Setup(
+                x => x.GetAll())
+                .ReturnsAsync(new List<Pokemon>());
+
+            var handler = new GetAllPokemonsQueryHandler(
+                _pokemonRepositoryMock.Object,
+                _mapperMock.Object);
+
+            // Act
+            var result = await handler.Handle(query, default);
+
+            // Assert
+            result.Should().BeOfType<ServiceResponse<List<GetPokemonDto>>>();
+            result.Success.Should().Be(expectedResponse.Success);
+            result.StatusCode.Should().Be(expectedResponse.StatusCode);
+            result.Data.Should().BeOfType<List<GetPokemonDto>>();
+            result.Data.Should().BeEmpty();
+        }
     }
 }
