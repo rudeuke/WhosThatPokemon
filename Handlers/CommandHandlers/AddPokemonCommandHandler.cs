@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WhosThatPokemon.Commands;
+﻿using WhosThatPokemon.Commands;
 using WhosThatPokemon.Data.Repositories;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
