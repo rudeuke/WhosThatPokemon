@@ -14,6 +14,7 @@ using System.Reflection;
 using FluentValidation;
 using WhosThatPokemon.Validation;
 using WhosThatPokemon.PipelineBehaviors;
+using WhosThatPokemon.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         .UseSqlServer(
             builder.Configuration.GetConnectionString("DefaultConnection"));
     });
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddMediatR(cfg =>

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WhosThatPokemon.Data.Repositories;
+﻿using WhosThatPokemon.Data.Repositories;
 using WhosThatPokemon.Queries;
 
 namespace WhosThatPokemon.Handlers.QueryHandlers
