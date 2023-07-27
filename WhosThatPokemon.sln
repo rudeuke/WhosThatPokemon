@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhosThatPokemon", "WhosThatPokemon.csproj", "{FCD3A39B-F2E1-4EBC-9B2B-E0C4284D4FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhosThatPokemon", "WhosThatPokemon.csproj", "{FCD3A39B-F2E1-4EBC-9B2B-E0C4284D4FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi.Moq", "PokemonApi.Moq\PokemonApi.Moq.csproj", "{A7AD54CB-7583-47F0-BDE0-61523835F722}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FCD3A39B-F2E1-4EBC-9B2B-E0C4284D4FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD3A39B-F2E1-4EBC-9B2B-E0C4284D4FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD3A39B-F2E1-4EBC-9B2B-E0C4284D4FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7AD54CB-7583-47F0-BDE0-61523835F722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7AD54CB-7583-47F0-BDE0-61523835F722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7AD54CB-7583-47F0-BDE0-61523835F722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7AD54CB-7583-47F0-BDE0-61523835F722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
