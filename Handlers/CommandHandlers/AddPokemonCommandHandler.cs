@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WhosThatPokemon.Commands;
+using WhosThatPokemon.Data.Repositories;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
     public class AddPokemonCommandHandler : IRequestHandler<AddPokemonCommand, ServiceResponse<List<GetPokemonDto>>>
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IPokemonRepository _pokemonRepository;
         private readonly IMapper _mapper;
 
-        public AddPokemonCommandHandler(ApplicationDbContext db, IMapper mapper)
+        public AddPokemonCommandHandler(IPokemonRepository pokemonRepository, IMapper mapper)
         {
-            _db = db;
+            _pokemonRepository = pokemonRepository;
             _mapper = mapper;
         }
 
@@ -19,10 +20,10 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
             var serviceResponse = new ServiceResponse<List<GetPokemonDto>>();
 
             var newPokemon = _mapper.Map<Pokemon>(request.NewPokemonDto);
-            _db.Pokemons.Add(newPokemon);
-            await _db.SaveChangesAsync();
 
-            var pokemons = await _db.Pokemons.ToListAsync();
+            await _pokemonRepository.Add(newPokemon);
+
+            var pokemons = await _pokemonRepository.GetAll();
             serviceResponse.Data = pokemons.Select(p => _mapper.Map<GetPokemonDto>(p)).ToList();
             serviceResponse.Message = "New pokemon added successfully";
             return serviceResponse;

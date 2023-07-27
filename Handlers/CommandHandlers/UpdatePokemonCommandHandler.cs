@@ -1,17 +1,18 @@
 ﻿using System.Net;
 using WhosThatPokemon.Commands;
+using WhosThatPokemon.Data.Repositories;
 using WhosThatPokemon.Exceptions;
 
 namespace WhosThatPokemon.Handlers.CommandHandlers
 {
     public class UpdatePokemonCommandHandler : IRequestHandler<UpdatePokemonCommand, ServiceResponse<GetPokemonDto>>
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IPokemonRepository _pokemonRepository;
         private readonly IMapper _mapper;
 
-        public UpdatePokemonCommandHandler(ApplicationDbContext db, IMapper mapper)
+        public UpdatePokemonCommandHandler(IPokemonRepository pokemonRepository, IMapper mapper)
         {
-            _db = db;
+            _pokemonRepository = pokemonRepository;
             _mapper = mapper;
         }
 
@@ -19,7 +20,7 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
         {
             var serviceResponse = new ServiceResponse<GetPokemonDto>();
 
-            var pokemon = await _db.Pokemons.FindAsync(request.UpdatedPokemonDto.Id);
+            var pokemon = await _pokemonRepository.GetById(request.UpdatedPokemonDto.Id);
 
             if (pokemon == null)
             {
@@ -34,7 +35,8 @@ namespace WhosThatPokemon.Handlers.CommandHandlers
             pokemon.PokemonTypes.Clear();
             pokemon.PokemonTypes.AddRange(updatedPokemon.PokemonTypes);
 
-            await _db.SaveChangesAsync();
+            await _pokemonRepository.Update(pokemon);
+
             serviceResponse.Data = _mapper.Map<GetPokemonDto>(pokemon);
             serviceResponse.Message = "Pokemon updated";
             return serviceResponse;
