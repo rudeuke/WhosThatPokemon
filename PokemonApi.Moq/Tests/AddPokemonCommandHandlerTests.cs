@@ -32,8 +32,8 @@ namespace PokemonApi.Moq.Tests
         {
             // Arrange
             var pokemonName = "Pikachu";
-            var addPokemonDto = new AddPokemonDto { Name = pokemonName, PokemonTypes = { "Fire" } };
-            var pokemonType = new WhosThatPokemon.Models.Type { PokeType = TypeEnum.Fire };
+            var addPokemonDto = new AddPokemonDto { Name = pokemonName, PokemonTypes = { "Electric" } };
+            var pokemonType = new WhosThatPokemon.Models.Type { PokeType = TypeEnum.Electric };
             var pokemonToAdd = new Pokemon { Name = pokemonName, PokemonTypes = { pokemonType } };
             var expectedResponse = new ServiceResponse<List<GetPokemonDto>>
             {

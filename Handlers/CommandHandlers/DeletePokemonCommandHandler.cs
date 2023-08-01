@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Net;
+﻿using System.Net;
 using WhosThatPokemon.Commands;
 using WhosThatPokemon.Data.Repositories;
 using WhosThatPokemon.Exceptions;
