@@ -90,7 +90,6 @@ namespace PokemonApi.Moq.Tests
                 _mapperMock.Object);
 
             // Act
-            //var result = await handler.Handle(query, default);
 
             // Assert
             var ex = await Assert.ThrowsAsync<ExceptionWithStatusCode>(async () => await handler.Handle(query, default));
